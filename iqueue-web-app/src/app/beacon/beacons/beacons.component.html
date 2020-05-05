@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <a [routerLink]="['/beacon']">Add Beacon</a>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="beacons.length == 0 && !fetching">There are no beacons.</p>
+        <table class="table table-striped" *ngIf="beacons.length > 0">
+            <tr>
+                <th>Beacon Id</th>
+                <th>Manufactorer</th>
+                <th>Model</th>
+            </tr>
+            <tr *ngFor="let beacon of beacons" [routerLink]="['/beacon', beacon.beaconId]">
+                <td> {{ beacon.operatorId }} </td>
+                <td> {{ beacon.manufacturer }} </td>
+                <td> {{ beacon.model }} </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

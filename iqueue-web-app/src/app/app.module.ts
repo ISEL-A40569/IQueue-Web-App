@@ -9,12 +9,16 @@ import { HttpService } from './services/http.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OperatorsComponent } from './operator/operators/operators.component';
+import { BeaconComponent } from './beacon/beacon.component';
+import { BeaconsComponent } from './beacon/beacons/beacons.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OperatorComponent,
     OperatorsComponent,
+    BeaconComponent,
+    BeaconsComponent,
   ],
   imports: [
     BrowserModule,

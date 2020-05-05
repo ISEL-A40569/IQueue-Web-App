@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Operator } from 'src/app/model/operator';
+import { Beacon } from 'src/app/model/beacon';
 import { HttpService } from '../../services/http.service'
 
 @Component({
-  selector: 'app-operators',
-  templateUrl: './operators.component.html',
-  styleUrls: ['./operators.component.css']
+  selector: 'app-beacons',
+  templateUrl: './beacons.component.html',
+  styleUrls: ['./beacons.component.css']
 })
-export class OperatorsComponent implements OnInit {
-  operators: Operator[] = []
-  fetching: boolean = false
+export class BeaconsComponent implements OnInit {
+  beacons: Beacon[] = []
+  fetching: boolean
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
-    this.getOperators()
   }
 
   getOperators() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/operator')
+    this.httpService.get('http://localhost:8080/api/iqueue/beacon')
       .subscribe(responseData => {
         for (const entry in responseData) {
-          this.operators.push(responseData[entry])
+          this.beacons.push(responseData[entry])
         }
         this.fetching = false
       }, error => {

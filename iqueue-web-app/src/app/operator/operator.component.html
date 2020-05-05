@@ -1,67 +1,51 @@
-
-<div class="row" *ngIf="editMode">
-  <div class="col-sm-4">  
+<div class="row" *ngIf="!createMode">
+  <div class="col-sm-4">
     <h5>Operator {{operator.operatorId}}</h5>
   </div>
   <div class="col-sm-3">
-    <a [routerLink] = "['/beacons, operator.operatorId]']">Beacons</a>
-</div>
-<div class="col-sm-3">
-  <a [routerLink] = "['/serviceQueues, operator.operatorId]']">Service Queues</a>
-</div>
-<div class="col-sm-2">
-  <a [routerLink] = "['/users, operator.operatorId]']">Users</a>
-</div>
+    <a [routerLink]="['/beacons, operator.operatorId]']">Beacons</a>
+  </div>
+  <div class="col-sm-3">
+    <a [routerLink]="['/serviceQueues, operator.operatorId]']">Service Queues</a>
+  </div>
+  <div class="col-sm-2">
+    <a [routerLink]="['/users, operator.operatorId]']">Users</a>
+  </div>
 </div>
 
-    <div class="row">
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label for="operator.operatorDescription">Operator Description</label>
-            <input
-              type="text"
-              id="operator.operatorDescription"
-              class="form-control"
-              [(ngModel)]="operator.operatorDescription">
-          </div>
-
-          <div class="form-group">
-            <label for="operator.email">E-mail</label>
-            <input
-              type="email"
-              id="operator.email"
-              class="form-control"
-              [(ngModel)]="operator.email">
-          </div>
-
-          <div class="form-group">
-            <label for="operator.phoneNumber">Telephone</label>
-            <input
-              type="tel"
-              id="operator.phoneNumber"
-              class="form-control"
-              [(ngModel)]="operator.phoneNumber">
-          </div>
-
-          <div class="form-group">
-            <label for="operator.address">Address</label>
-            <input
-              type="text"
-              id="operator.address"
-              class="form-control"
-              [(ngModel)]="operator.address">
-          </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <label for="operator.operatorDescription">Operator Description</label>
+      <input type="text" id="operator.operatorDescription" class="form-control"
+        [(ngModel)]="operator.operatorDescription">
     </div>
 
+    <div class="form-group">
+      <label for="operator.email">E-mail</label>
+      <input type="email" id="operator.email" class="form-control" [(ngModel)]="operator.email">
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-          <div *ngIf="!editMode">
-            <button class="btn btn-primary" (click)="onCreateOperator()">Add</button>  
-          </div>
-          <div *ngIf="editMode">
-            <button class="btn btn-primary" (click)="onUpdateOperator()">Update</button> 
-            <button class="btn btn-primary" (click)="onDeleteOperator()">Remove</button> 
-          </div>
-        </div>
+
+    <div class="form-group">
+      <label for="operator.phoneNumber">Telephone</label>
+      <input type="tel" id="operator.phoneNumber" class="form-control" [(ngModel)]="operator.phoneNumber">
     </div>
+
+    <div class="form-group">
+      <label for="operator.address">Address</label>
+      <input type="text" id="operator.address" class="form-control" [(ngModel)]="operator.address">
+    </div>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div *ngIf="createMode">
+      <button class="btn btn-primary" (click)="onCreateOperator()">Add</button>
+    </div>
+    <div *ngIf="!createMode">
+      <button class="btn btn-primary" (click)="onUpdateOperator()">Update</button>
+      <button class="btn btn-primary" (click)="onDeleteOperator()">Remove</button>
+    </div>
+  </div>
+</div>

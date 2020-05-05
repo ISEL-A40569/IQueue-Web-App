@@ -6,7 +6,7 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class HttpService {
 
-    constructor (private httpClient: HttpClient ) {
+    constructor(private httpClient: HttpClient) {
 
     }
 

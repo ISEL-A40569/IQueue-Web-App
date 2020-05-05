@@ -1,24 +1,25 @@
 <div class="row">
-    <div class="col-sm-12">
-        <a [routerLink] = "['/operator']">Add Operator</a>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <a [routerLink]="['/operator']">Add Operator</a>
     </div>
+    <div class="col-sm-2"></div>
 </div>
 <div class="row">
-    
-    <div class="col-sm-12">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
         <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="operators.length == 0 && !fetching">There are no operators.</p>
+        <p *ngIf="!fetching && operators.length == 0">There are no operators.</p>
         <table class="table table-striped" *ngIf="operators.length > 0">
             <tr>
                 <th>Operator Id</th>
                 <th>Description</th>
             </tr>
-            <tr *ngFor="let operator of operators">
-                <td>
-                    <a [routerLink] = "['/operator', operator.operatorId]">{{ operator.operatorId }}</a></td>
-                <td>{{ operator.operatorDescription }}</td>
+            <tr *ngFor="let operator of operators" [routerLink]="['/operator', operator.operatorId]">
+                <td> {{ operator.operatorId }} </td>
+                <td> {{ operator.operatorDescription }} </td>
             </tr>
         </table>
     </div>
+    <div class="col-sm-2"></div>
 </div>
-

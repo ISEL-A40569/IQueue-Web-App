@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-loggedIn = false
-userid: number
-password = ''
+  loggedIn = false
+  userid: number
+  password = ''
 
   title = 'iqueue-web-app';
 
-  constructor(private router: Router){}
-  
+  constructor(private router: Router) { }
+
   onLogin() {
     this.loggedIn = true
   }
