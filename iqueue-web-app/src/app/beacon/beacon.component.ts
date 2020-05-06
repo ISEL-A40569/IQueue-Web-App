@@ -5,12 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-beacon',
-  templateUrl: './beacon.component.html',
-  styleUrls: ['./beacon.component.css']
+  templateUrl: './beacon.component.html'
 })
 export class BeaconComponent implements OnInit {
   beacon: Beacon = new Beacon()
-  createMode: boolean
+  createMode: boolean = true
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,

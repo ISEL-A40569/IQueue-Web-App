@@ -6,7 +6,7 @@
     <a [routerLink]="['/beacons, operator.operatorId]']">Beacons</a>
   </div>
   <div class="col-sm-3">
-    <a [routerLink]="['/serviceQueues, operator.operatorId]']">Service Queues</a>
+    <a [routerLink]="['/operator/servicequeue', operator.operatorId]">Service Queues</a>
   </div>
   <div class="col-sm-2">
     <a [routerLink]="['/users, operator.operatorId]']">Users</a>
@@ -20,24 +20,36 @@
       <input type="text" id="operator.operatorDescription" class="form-control"
         [(ngModel)]="operator.operatorDescription">
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
     <div class="form-group">
       <label for="operator.email">E-mail</label>
       <input type="email" id="operator.email" class="form-control" [(ngModel)]="operator.email">
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
     <div class="form-group">
       <label for="operator.phoneNumber">Telephone</label>
       <input type="tel" id="operator.phoneNumber" class="form-control" [(ngModel)]="operator.phoneNumber">
     </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="col-sm-12">
     <div class="form-group">
       <label for="operator.address">Address</label>
       <input type="text" id="operator.address" class="form-control" [(ngModel)]="operator.address">
     </div>
   </div>
-
 </div>
+
 <div class="row">
   <div class="col-sm-12">
     <div *ngIf="createMode">

@@ -4,8 +4,7 @@ import { HttpService } from '../../services/http.service'
 
 @Component({
   selector: 'app-beacons',
-  templateUrl: './beacons.component.html',
-  styleUrls: ['./beacons.component.css']
+  templateUrl: './beacons.component.html'
 })
 export class BeaconsComponent implements OnInit {
   beacons: Beacon[] = []
@@ -14,9 +13,10 @@ export class BeaconsComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.getBeacons()
   }
 
-  getOperators() {
+  getBeacons() {
     this.fetching = true
     this.httpService.get('http://localhost:8080/api/iqueue/beacon')
       .subscribe(responseData => {

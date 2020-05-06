@@ -17,7 +17,7 @@
                 <th>Model</th>
             </tr>
             <tr *ngFor="let beacon of beacons" [routerLink]="['/beacon', beacon.beaconId]">
-                <td> {{ beacon.operatorId }} </td>
+                <td> {{ beacon.beaconId }} </td>
                 <td> {{ beacon.manufacturer }} </td>
                 <td> {{ beacon.model }} </td>
             </tr>

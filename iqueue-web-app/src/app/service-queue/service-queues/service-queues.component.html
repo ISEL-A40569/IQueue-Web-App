@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <a [routerLink]="['/servicequeue']">Add Service Queue</a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="!fetching && serviceQueues.length == 0">There are no service queues.</p>
+        <table class="table table-striped" *ngIf="serviceQueues.length > 0">
+            <tr>
+                <th>Service Queue Id</th>
+                <th>Operator Id</th>
+                <th>Description</th>
+            </tr>
+            <tr *ngFor="let serviceQueue of serviceQueues"
+                [routerLink]="['/servicequeue', serviceQueue.serviceQueueId, serviceQueue.operatorId]">
+                <td> {{ serviceQueue.serviceQueueId }} </td>
+                <td> {{ serviceQueue.operatorId }} </td>
+                <td> {{ serviceQueue.serviceQueueDescription }} </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>

@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-operator',
-  templateUrl: './operator.component.html',
-  styleUrls: ['./operator.component.css']
+  templateUrl: './operator.component.html'
 })
 export class OperatorComponent implements OnInit {
   operator: Operator = new Operator() 

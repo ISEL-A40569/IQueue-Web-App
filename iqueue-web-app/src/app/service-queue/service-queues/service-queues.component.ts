@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Operator } from 'src/app/model/operator';
+import { ServiceQueue } from '../../model/ServiceQueue'
 import { HttpService } from '../../services/http.service'
 
 @Component({
-  selector: 'app-operators',
-  templateUrl: './operators.component.html'
+  selector: 'app-service-queues',
+  templateUrl: './service-queues.component.html'
 })
-export class OperatorsComponent implements OnInit {
-  operators: Operator[] = []
+export class ServiceQueuesComponent implements OnInit {
+  serviceQueues: ServiceQueue[] = []
   fetching: boolean = false
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
-    this.getOperators()
+    this.getServiceQueues()
   }
 
-  getOperators() {
+  getServiceQueues() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/operator')
+    this.httpService.get(`http://localhost:8080/api/iqueue/operator/servicequeue`)
       .subscribe(responseData => {
         for (const entry in responseData) {
-          this.operators.push(responseData[entry])
+          this.serviceQueues.push(responseData[entry])
         }
         this.fetching = false
       }, error => {

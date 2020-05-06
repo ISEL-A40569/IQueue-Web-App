@@ -1,1 +1,89 @@
-<p>beacon works!</p>
+<div class="row" *ngIf="!createMode">
+    <div class="col-sm-12">
+        <h5>Beacon {{beacon.beaconId}}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.beaconMacAddress">Mac Address</label>
+            <input type="text" id="beacon.beaconMacAddress" class="form-control" [(ngModel)]="beacon.beaconMacAddress">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.uidNamespaceId">UidNamespaceId</label>
+            <input type="text" id="beacon.uidNamespaceId" class="form-control" [(ngModel)]="beacon.uidNamespaceId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.uidInstanceId">UidInstanceId</label>
+            <input type="text" id="beacon.uidInstanceId" class="form-control" [(ngModel)]="beacon.uidInstanceId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.iBeaconUuid">IBeaconUuid</label>
+            <input type="text" id="beacon.iBeaconUuid" class="form-control" [(ngModel)]="beacon.iBeaconUuid">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.iBeaconMajor">IBeaconMajor</label>
+            <input type="text" id="beacon.iBeaconMajor" class="form-control" [(ngModel)]="beacon.iBeaconMajor">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.iBeaconMinor">IBeaconMinor</label>
+            <input type="text" id="beacon.iBeaconMinor" class="form-control" [(ngModel)]="beacon.iBeaconMinor">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.manufacturer">Manufacturer</label>
+            <input type="text" id="beacon.manufacturer" class="form-control" [(ngModel)]="beacon.manufacturer">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="beacon.model">Model</label>
+            <input type="text" id="beacon.model" class="form-control" [(ngModel)]="beacon.model">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div *ngIf="createMode">
+            <button class="btn btn-primary" (click)="onCreateBeacon()">Add</button>
+        </div>
+        <div *ngIf="!createMode">
+            <button class="btn btn-primary" (click)="onUpdateBeacon()">Update</button>
+            <button class="btn btn-primary" (click)="onDeleteBeacon()">Remove</button>
+        </div>
+    </div>
+</div>

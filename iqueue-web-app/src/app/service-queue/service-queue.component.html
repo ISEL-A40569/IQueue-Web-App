@@ -1,0 +1,57 @@
+<div class="row" *ngIf="!createMode">
+    <div class="col-md-12">
+        <h5>Service Queue {{serviceQueue.serviceQueueId}}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="serviceQueue.operatorId">Operator Id</label>
+            <input type="number" id="serviceQueue.operatorId" class="form-control"
+                [(ngModel)]="serviceQueue.operatorId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="serviceQueue.serviceQueueDescription">Service Queue Description</label>
+            <input type="text" id="serviceQueue.serviceQueueDescription" class="form-control"
+                [(ngModel)]="serviceQueue.serviceQueueDescription">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="serviceQueue.serviceQueueTypeId">Service Queue Type</label>
+            <input type="number" id="serviceQueue.serviceQueueTypeId" class="form-control"
+                [(ngModel)]="serviceQueue.serviceQueueTypeId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="serviceQueue.dailyLimit">Service Queue Daily Limit</label>
+            <input type="number" id="serviceQueue.dailyLimit" class="form-control"
+                [(ngModel)]="serviceQueue.dailyLimit">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+      <div *ngIf="createMode">
+        <button class="btn btn-primary" (click)="onCreateServiceQueue()">Add</button>
+      </div>
+      <div *ngIf="!createMode">
+        <button class="btn btn-primary" (click)="onUpdateServiceQueue()">Update</button>
+        <button class="btn btn-primary" (click)="onDeleteServiceQueue()">Remove</button>
+      </div>
+    </div>
+  </div>
