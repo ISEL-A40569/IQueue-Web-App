@@ -14,6 +14,9 @@ import { BeaconsComponent } from './beacon/beacons/beacons.component';
 import { ServiceQueueComponent } from './service-queue/service-queue.component';
 import { UserComponent } from './user/user.component';
 import { ServiceQueuesComponent } from './service-queue/service-queues/service-queues.component';
+import { UsersComponent } from './user/users/users.component';
+import { DeskComponent } from './desk/desk.component';
+import { DesksComponent } from './desk/desks/desks.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { ServiceQueuesComponent } from './service-queue/service-queues/service-q
     ServiceQueueComponent,
     UserComponent,
     ServiceQueuesComponent,
+    UsersComponent,
+    DeskComponent,
+    DesksComponent,
   ],
   imports: [
     BrowserModule,
