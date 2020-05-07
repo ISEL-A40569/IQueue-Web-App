@@ -8,8 +8,13 @@ import { ServiceQueueComponent } from './service-queue/service-queue.component'
 import { ServiceQueuesComponent } from './service-queue/service-queues/service-queues.component'
 import { UserComponent } from './user/user.component'
 import { UsersComponent } from './user/users/users.component'
+import { DeskComponent } from './desk/desk.component'
+import { DesksComponent } from './desk/desks/desks.component'
  
 const routes: Routes = [
+  { path: 'desk/:serviceQueueId/:operatorId/:deskId', component: DeskComponent },
+  { path: 'desk', component: DeskComponent },
+  { path: 'desks', component: DesksComponent },
   { path: 'user/:userId', component: UserComponent },
   { path: 'user', component: UserComponent },
   { path: 'users', component: UsersComponent },

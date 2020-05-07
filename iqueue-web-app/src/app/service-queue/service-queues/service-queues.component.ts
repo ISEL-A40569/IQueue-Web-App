@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceQueue } from '../../model/ServiceQueue'
+import { ServiceQueue } from '../../model/service-queue'
 import { HttpService } from '../../services/http.service'
 
 @Component({

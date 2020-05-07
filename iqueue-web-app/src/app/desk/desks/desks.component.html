@@ -1,1 +1,26 @@
-<p>desks works!</p>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <a [routerLink]="['/desk']">Add Desk</a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="!fetching && desks.length == 0">There are no desks.</p>
+        <table class="table table-striped" *ngIf="desks.length > 0">
+            <tr>
+                <th>Desk Id</th>
+                <th>Description</th>
+            </tr>
+            <tr *ngFor="let desk of desks" [routerLink]="['/desk', desk.serviceQueueId, desk.operatorId, desk.deskId]">
+                <td> {{ desk.deskId }} </td>
+                <td> {{ desk.deskDescription }} </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>

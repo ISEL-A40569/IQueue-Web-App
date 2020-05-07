@@ -1,1 +1,44 @@
-<p>desk works!</p>
+<div class="row" *ngIf="!createMode">
+    <div class="col-sm-12">
+        <h5>Desk {{desk.deskId}}</h5>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="desk.operatorId">Operator Id</label>
+            <input type="number" id="desk.operatorId" class="form-control" [(ngModel)]="desk.operatorId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="desk.serviceQueueId">Service Queue Id</label>
+            <input type="number" id="desk.serviceQueueId" class="form-control" [(ngModel)]="desk.serviceQueueId">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label for="desk.deskDescription">Desk Description</label>
+            <input type="text" id="desk.deskDescription" class="form-control" [(ngModel)]="desk.deskDescription">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div *ngIf="createMode">
+            <button class="btn btn-primary" (click)="onCreateDesk()">Add</button>
+        </div>
+        <div *ngIf="!createMode">
+            <button class="btn btn-primary" (click)="onUpdateDesk()">Update</button>
+            <button class="btn btn-primary" (click)="onDeleteDesk()">Remove</button>
+        </div>
+    </div>
+</div>

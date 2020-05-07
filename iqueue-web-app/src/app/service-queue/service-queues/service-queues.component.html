@@ -5,6 +5,7 @@
     </div>
     <div class="col-md-2"></div>
 </div>
+
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -13,13 +14,11 @@
         <table class="table table-striped" *ngIf="serviceQueues.length > 0">
             <tr>
                 <th>Service Queue Id</th>
-                <th>Operator Id</th>
                 <th>Description</th>
             </tr>
             <tr *ngFor="let serviceQueue of serviceQueues"
                 [routerLink]="['/servicequeue', serviceQueue.serviceQueueId, serviceQueue.operatorId]">
                 <td> {{ serviceQueue.serviceQueueId }} </td>
-                <td> {{ serviceQueue.operatorId }} </td>
                 <td> {{ serviceQueue.serviceQueueDescription }} </td>
             </tr>
         </table>
