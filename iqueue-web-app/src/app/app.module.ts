@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OperatorComponent } from './operator/operator.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpService } from './services/http.service';
+import { HttpService } from './services/http-service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OperatorsComponent } from './operator/operators/operators.component';
@@ -17,6 +17,7 @@ import { ServiceQueuesComponent } from './service-queue/service-queues/service-q
 import { UsersComponent } from './user/users/users.component';
 import { DeskComponent } from './desk/desk.component';
 import { DesksComponent } from './desk/desks/desks.component';
+import { LoginService } from './services/login-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { DesksComponent } from './desk/desks/desks.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

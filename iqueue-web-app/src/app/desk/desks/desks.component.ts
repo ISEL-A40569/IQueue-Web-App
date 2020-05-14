@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Desk } from '../../model/desk'
-import { HttpService } from '../../services/http.service'
+import { HttpService } from '../../services/http-service'
 
 @Component({
   selector: 'app-desks',
@@ -18,7 +18,7 @@ export class DesksComponent implements OnInit {
 
   getDesks() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/operator/servicequeue/desk`)
+    this.httpService.get(`https://localhost:8443/api/iqueue/operator/servicequeue/desk`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.desks.push(responseData[entry])

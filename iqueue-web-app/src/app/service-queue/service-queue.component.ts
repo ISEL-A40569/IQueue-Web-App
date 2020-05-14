@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceQueue } from '../model/service-queue'
-import { HttpService } from '../services/http.service'
+import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
@@ -27,7 +27,7 @@ export class ServiceQueueComponent implements OnInit {
 
   getServiceQueue() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
+      .get(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueDescription = responseData['serviceQueueDescription']
         this.serviceQueue.serviceQueueTypeId = responseData['serviceQueueTypeId']
@@ -37,7 +37,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onCreateServiceQueue() {
     this.httpService
-      .post(`http://localhost:8080/api/iqueue/operator/servicequeue/`, this.serviceQueue)
+      .post(`https://localhost:8443/api/iqueue/operator/servicequeue/`, this.serviceQueue)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueId = responseData['serviceQueueId']
         alert(`Service Queue successfully created with id ${this.serviceQueue.serviceQueueId}!`)
@@ -50,7 +50,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onUpdateServiceQueue() {
     this.httpService
-      .update(`http://localhost:8080/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`,
+      .update(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`,
         this.serviceQueue)
       .subscribe(responseData => {
         alert(`Service Queue with id ${this.serviceQueue.serviceQueueId} successfully updated!`)
@@ -61,7 +61,7 @@ export class ServiceQueueComponent implements OnInit {
   }
 
   onDeleteServiceQueue() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
+    this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
       .subscribe(responseData => {
         alert(`Service Queue with id ${this.serviceQueue.serviceQueueId} successfully deleted!`)
         this.router.navigate([`/servicequeues`])

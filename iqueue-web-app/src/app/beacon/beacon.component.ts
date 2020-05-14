@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from '../model/beacon'
-import { HttpService } from '../services/http.service'
+import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
@@ -24,7 +24,7 @@ export class BeaconComponent implements OnInit {
   }
 
   getBeacon() {
-    this.httpService.get(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`)
+    this.httpService.get(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`)
       .subscribe(responseData => {
         this.beacon.beaconMacAddress = responseData['beaconMacAddress']
         this.beacon.uidNamespaceId = responseData['uidNamespaceId']
@@ -38,7 +38,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onCreateBeacon() {
-    this.httpService.post('http://localhost:8080/api/iqueue/beacon', this.beacon).subscribe(responseData => {
+    this.httpService.post('https://localhost:8443/api/iqueue/beacon', this.beacon).subscribe(responseData => {
       this.beacon.beaconId = responseData['beaconId']
       alert(`Beacon successfully created with id ${this.beacon.beaconId}!`)
       this.createMode = false
@@ -49,7 +49,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onUpdateBeacon() {
-    this.httpService.update(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`,
+    this.httpService.update(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`,
       this.beacon)
       .subscribe(responseData => {
         alert(`Beacon with id ${this.beacon.beaconId} successfully updated!`)
@@ -60,7 +60,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onDeleteBeacon() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`)
+    this.httpService.delete(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`)
       .subscribe(responseData => {
         alert(`Beacon with id ${this.beacon.beaconId} successfully deleted!`)
         this.router.navigate(['/beacons'])

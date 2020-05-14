@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user'
-import { HttpService } from '../../services/http.service'
+import { HttpService } from '../../services/http-service'
 
 @Component({
   selector: 'app-users',
@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/user`)
+    this.httpService.get(`https://localhost:8443/api/iqueue/user`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.users.push(responseData[entry])

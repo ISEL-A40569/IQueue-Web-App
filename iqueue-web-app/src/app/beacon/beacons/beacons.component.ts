@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from 'src/app/model/beacon';
-import { HttpService } from '../../services/http.service'
+import { HttpService } from '../../services/http-service'
 
 @Component({
   selector: 'app-beacons',
@@ -18,7 +18,7 @@ export class BeaconsComponent implements OnInit {
 
   getBeacons() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/beacon')
+    this.httpService.get('https://localhost:8443/api/iqueue/beacon')
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.beacons.push(responseData[entry])
