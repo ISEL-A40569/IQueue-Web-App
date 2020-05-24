@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user'
 import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
+import { UserProfile } from '../model/user-profile'
 
 @Component({
   selector: 'app-user',
@@ -10,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class UserComponent implements OnInit {
   user: User = new User()
   createMode: boolean = true
+  userProfiles: UserProfile[] = []
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
@@ -21,6 +23,7 @@ export class UserComponent implements OnInit {
       this.user.userId = this.route.snapshot.params['userId']
       this.getUser()
     }
+    this.getUserProfiles()
   }
 
   getUser() {
@@ -70,5 +73,17 @@ export class UserComponent implements OnInit {
           alert(`Error deleting user ${this.user.userId}!`)
         })
   }
+
+  getUserProfiles() {
+    this.httpService
+      .get(`https://localhost:8443/api/iqueue/userprofile?languageId=12`)
+      .subscribe(responseData => {
+        for (const entry in responseData) {
+          this.userProfiles.push(responseData[entry])
+          console.log(responseData[entry])
+        }
+      })
+  }
+
 }
 

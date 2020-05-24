@@ -45,14 +45,23 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <label for="user.userProfileId">User Profile Id</label>
-        <input type="number" id="user.userProfileId" class="form-control"
-          [(ngModel)]="user.userProfileId">
-      </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="row">
+                <label for="selectUserProfile">User Profile</label>
+            </div>
+            <div class="row">
+                <select name="selectUserProfile" id="selectUserProfile"
+                    [(ngModel)]="user.userProfileId">
+                    <option *ngIf="createMode"></option>
+                    <option *ngFor=" let userProfile of userProfiles"
+                        value="{{userProfile.userProfileId}}">
+                        {{userProfile.userProfileDescription}}</option>
+                </select>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
 
   <div class="row">
     <div class="col-sm-12">

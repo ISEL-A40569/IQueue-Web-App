@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceQueue } from '../model/service-queue'
 import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
+import { ServiceQueueType } from '../model/service-queue-type'
+
 
 @Component({
   selector: 'app-service-queue',
@@ -10,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class ServiceQueueComponent implements OnInit {
   serviceQueue: ServiceQueue = new ServiceQueue()
   createMode: boolean = true
+  serviceQueueTypes: ServiceQueueType[] = []
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
@@ -23,6 +26,7 @@ export class ServiceQueueComponent implements OnInit {
       this.serviceQueue.operatorId = this.route.snapshot.params['operatorId']
       this.getServiceQueue()
     }
+    this.getServiceQueueTypes()
   }
 
   getServiceQueue() {
@@ -69,6 +73,17 @@ export class ServiceQueueComponent implements OnInit {
         error => {
           alert(`Error deleting Service Queue ${this.serviceQueue.serviceQueueId}!`)
         })
+  }
+
+  getServiceQueueTypes() {
+    this.httpService
+      .get(`https://localhost:8443/api/iqueue/servicequeuetype?languageId=12`)
+      .subscribe(responseData => {
+        for (const entry in responseData) {
+          this.serviceQueueTypes.push(responseData[entry])
+          console.log(responseData[entry])
+        }
+      })
   }
 
 }
