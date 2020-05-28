@@ -76,7 +76,7 @@ export class UserComponent implements OnInit {
 
   getUserProfiles() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/userprofile?languageId=12`)
+      .get(`https://localhost:8443/api/iqueue/userprofile?languageId=1`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.userProfiles.push(responseData[entry])

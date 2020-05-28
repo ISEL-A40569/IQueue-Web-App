@@ -77,7 +77,7 @@ export class ServiceQueueComponent implements OnInit {
 
   getServiceQueueTypes() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/servicequeuetype?languageId=12`)
+      .get(`https://localhost:8443/api/iqueue/servicequeuetype?languageId=1`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueueTypes.push(responseData[entry])

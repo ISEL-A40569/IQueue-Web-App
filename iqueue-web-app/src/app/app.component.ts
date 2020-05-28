@@ -11,6 +11,7 @@ export class AppComponent {
   loggedIn = false
   userid: string
   password: string
+  userProfileId: number
 
   constructor(private router: Router,
     private loginService: LoginService) { }
@@ -18,6 +19,7 @@ export class AppComponent {
   onLogin() {
     this.loginService.authenticate(this.userid, this.password)
     this.loggedIn = true
+    this.userProfileId = 1
   }
 
   onLogout() {

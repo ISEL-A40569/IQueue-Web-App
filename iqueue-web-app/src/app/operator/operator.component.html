@@ -3,13 +3,10 @@
     <h5>Operator {{operator.operatorId}}</h5>
   </div>
   <div class="col-sm-3">
-    <a [routerLink]="['/beacons, operator.operatorId]']">Beacons</a>
-  </div>
-  <div class="col-sm-3">
-    <a [routerLink]="['/operator/servicequeue', operator.operatorId]">Service Queues</a>
+    <a [routerLink]="['beacon']">Beacons</a>
   </div>
   <div class="col-sm-2">
-    <a [routerLink]="['/users, operator.operatorId]']">Users</a>
+    <a [routerLink]="['user']">Managers</a>
   </div>
 </div>
 

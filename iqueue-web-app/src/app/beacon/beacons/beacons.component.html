@@ -13,7 +13,7 @@
         <table class="table table-striped" *ngIf="beacons.length > 0">
             <tr>
                 <th>Beacon Id</th>
-                <th>Manufactorer</th>
+                <th>Manufacturer</th>
                 <th>Model</th>
             </tr>
             <tr *ngFor="let beacon of beacons" [routerLink]="['/beacon', beacon.beaconId]">

@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="operatorBeacons.length == 0 && !fetching">There are no beacons for operator {{ operatorId }}.</p>
+        <table class="table table-striped" *ngIf="operatorBeacons.length > 0">
+            <tr>
+                <th>Beacon Id</th>
+            </tr>
+            <tr *ngFor="let beacon of operatorBeacons" [routerLink]="[beacon.beaconId]">
+                <td> {{ beacon.beaconId }} </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="row">
+                <label for="selectBeacon">Beacons</label>
+            </div>
+            <div class="row">
+                <select name="selectBeacon" id="selectBeacon" [(ngModel)]="beaconId">
+                    <option *ngFor=" let beacon of beacons" value="{{beacon.beaconId}}">
+                        {{beacon.beaconId}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                <button class="btn btn-primary" (click)="onAddBeacon()">Add</button>
+            </div>
+        </div>
+    </div>
