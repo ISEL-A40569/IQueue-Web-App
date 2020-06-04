@@ -25,8 +25,8 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group">
-      <label for="user.phoneNumber">User PhoneNumber</label>
-      <input type="number" id="user.phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber">
+      <label for="user.telephoneNumber">User TelephoneNumber</label>
+      <input type="number" id="user.telephoneNumber" class="form-control" [(ngModel)]="user.telephoneNumber">
     </div>
   </div>
 </div>
@@ -48,7 +48,7 @@
       </div>
       <div class="row">
         <select name="selectUserProfile" id="selectUserProfile" [(ngModel)]="user.userProfileId">
-          <option *ngIf="createMode"></option>
+          <!-- <option *ngIf="createMode"></option> -->
           <option *ngFor=" let userProfile of userProfiles" value="{{userProfile.userProfileId}}">
             {{userProfile.userProfileDescription}}</option>
         </select>

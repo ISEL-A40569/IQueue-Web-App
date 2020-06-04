@@ -11,6 +11,7 @@ export class HttpService {
     }
 
     headers: HttpHeaders = new HttpHeaders().set('Authorization', `Basic ${this.loginService.authToken}`)
+                                            .set('Access-Control-Allow-Origin', '*')
 
     get(url: string) {
         return this.httpClient

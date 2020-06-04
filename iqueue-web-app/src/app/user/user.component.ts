@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
       .subscribe(responseData => {
         this.user.userName = responseData['userName']
         this.user.email = responseData['email']
-        this.user.phoneNumber = responseData['phoneNumber']
+        this.user.telephoneNumber = responseData['telephoneNumber']
         this.user.address = responseData['address']
         this.user.userProfileId = responseData['userProfileId']
       })
@@ -78,10 +78,12 @@ export class UserComponent implements OnInit {
     this.httpService
       .get(`https://localhost:8443/api/iqueue/userprofile?languageId=1`)
       .subscribe(responseData => {
-        for (const entry in responseData) {
-          this.userProfiles.push(responseData[entry])
+        for (let entry in responseData) {
+          this.userProfiles.push({userProfileId: responseData[entry].userProfileIds.userProfileId,
+            userProfileDescription: responseData[entry].userProfileDescription})
           console.log(responseData[entry])
         }
+        console.log(this.userProfiles)
       })
   }
 
