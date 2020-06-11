@@ -1,11 +1,8 @@
 export class Beacon {
     beaconId: number
     beaconMacAddress: string
-    uidNamespaceId: string
-    uidInstanceId: string
-    iBeaconUuid: string
-    iBeaconMajor: string
-    iBeaconMinor: string
+    namespaceId: string
+    instanceId: string
     manufacturer: string
     model: string
 

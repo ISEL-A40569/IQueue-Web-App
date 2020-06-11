@@ -28,7 +28,7 @@ export class OperatorComponent implements OnInit {
       .subscribe(responseData => {
         this.operator.operatorDescription = responseData['operatorDescription']
         this.operator.email = responseData['email']
-        this.operator.phoneNumber = responseData['phoneNumber']
+        this.operator.telephoneNumber = responseData['telephoneNumber']
         this.operator.address = responseData['address']
       })
   }

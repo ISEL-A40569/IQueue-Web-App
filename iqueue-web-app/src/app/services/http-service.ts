@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginService } from './login-service'
 
 @Injectable()
 export class HttpService {
 
-    constructor(private httpClient: HttpClient,
-        private loginService: LoginService) {
-
+    constructor(private httpClient: HttpClient) {
     }
 
-    headers: HttpHeaders = new HttpHeaders().set('Authorization', `Basic ${this.loginService.authToken}`)
+    headers: HttpHeaders = new HttpHeaders()//.set('Authorization', `Basic ${this.loginService.authToken}`)
                                             .set('Access-Control-Allow-Origin', '*')
 
     get(url: string) {

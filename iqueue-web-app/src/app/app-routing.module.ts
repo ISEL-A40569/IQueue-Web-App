@@ -14,6 +14,7 @@ import { OperatorBeaconComponent } from './operator-beacon/operator-beacon.compo
 import { OperatorBeaconsComponent } from './operator-beacon/operator-beacons/operator-beacons.component'
 import { OperatorUserComponent } from './operator-user/operator-user.component'
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component'
+import { ResetPasswordComponent } from './reset-password/reset-password.component'
 
 const routes: Routes = [
   { path: 'desk/:serviceQueueId/:operatorId/:deskId', component: DeskComponent },
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'operators', component: OperatorsComponent },
   { path: 'beacon/:beaconId', component: BeaconComponent },
   { path: 'beacon', component: BeaconComponent },
-  { path: 'beacons', component: BeaconsComponent }
+  { path: 'beacons', component: BeaconsComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent }
 ];
 
 @NgModule({

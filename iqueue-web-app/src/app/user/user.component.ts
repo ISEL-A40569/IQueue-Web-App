@@ -67,7 +67,7 @@ export class UserComponent implements OnInit {
     this.httpService.delete(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
       .subscribe(responseData => {
         alert(`User with id ${this.user.userId} successfully deleted!`)
-        this.router.navigate([`/servicequeues`])
+        this.router.navigate([`/users`])
       },
         error => {
           alert(`Error deleting user ${this.user.userId}!`)
@@ -79,8 +79,7 @@ export class UserComponent implements OnInit {
       .get(`https://localhost:8443/api/iqueue/userprofile?languageId=1`)
       .subscribe(responseData => {
         for (let entry in responseData) {
-          this.userProfiles.push({userProfileId: responseData[entry].userProfileIds.userProfileId,
-            userProfileDescription: responseData[entry].userProfileDescription})
+          this.userProfiles.push(responseData[entry])
           console.log(responseData[entry])
         }
         console.log(this.userProfiles)

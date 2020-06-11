@@ -17,11 +17,11 @@ import { ServiceQueuesComponent } from './service-queue/service-queues/service-q
 import { UsersComponent } from './user/users/users.component';
 import { DeskComponent } from './desk/desk.component';
 import { DesksComponent } from './desk/desks/desks.component';
-import { LoginService } from './services/login-service';
 import { OperatorBeaconComponent } from './operator-beacon/operator-beacon.component';
 import { OperatorBeaconsComponent } from './operator-beacon/operator-beacons/operator-beacons.component';
 import { OperatorUserComponent } from './operator-user/operator-user.component';
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +40,7 @@ import { OperatorUsersComponent } from './operator-user/operator-users/operator-
     OperatorBeaconsComponent,
     OperatorUserComponent,
     OperatorUsersComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,7 @@ import { OperatorUsersComponent } from './operator-user/operator-users/operator-
     FormsModule,
     HttpClientModule
   ],
-  providers: [HttpService, LoginService],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

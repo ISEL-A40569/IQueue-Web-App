@@ -2,7 +2,7 @@ export class User {
     userId: number
     userName: string
     email: string
-    telephoneNumber: number
+    telephoneNumber: string
     address: string
     userProfileId: number
 }

@@ -27,11 +27,8 @@ export class BeaconComponent implements OnInit {
     this.httpService.get(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`)
       .subscribe(responseData => {
         this.beacon.beaconMacAddress = responseData['beaconMacAddress']
-        this.beacon.uidNamespaceId = responseData['uidNamespaceId']
-        this.beacon.uidInstanceId = responseData['uidInstanceId']
-        this.beacon.iBeaconUuid = responseData['iBeaconUuid']
-        this.beacon.iBeaconMajor = responseData['iBeaconMajor']
-        this.beacon.iBeaconMinor = responseData['iBeaconMinor']
+        this.beacon.namespaceId = responseData['namespaceId']
+        this.beacon.instanceId = responseData['instanceId']
         this.beacon.manufacturer = responseData['manufacturer']
         this.beacon.model = responseData['model']
       })

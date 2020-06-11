@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './services/login-service'
 import { HttpService } from './services/http-service'
 
 @Component({
@@ -17,47 +16,50 @@ export class AppComponent {
   deskId: number
 
   constructor(private router: Router,
-    private loginService: LoginService,
     private httpService: HttpService) { }
 
   onLogin() {
-    this.loginService.authenticate(this.userid, this.password)
-
     this.httpService
       .post(`https://localhost:8443/api/iqueue/login`, { userId: this.userid, password: this.password })
       .subscribe(response => {
 
-        console.log(response)
-
         this.userProfileId = response['userProfileId']
 
         if (this.userProfileId == 2) {
-          // TODO: get operator
+          this.httpService
+            .get(`https://localhost:8443/api/iqueue/operator/user/${this.userid}`)
+            .subscribe(response => {
+              this.operatorId = response['operatorId']
+            })
         }
 
         if (this.userProfileId == 3) {
-          // TODO: get desk
+          this.httpService
+            .get(`https://localhost:8443/api/iqueue/desk/user/${this.userid}`)
+            .subscribe(response => {
+              this.deskId = response['deskId']
+            })
         }
 
         alert(`Welcome ${response['userName']}`)
         this.loggedIn = true
+
       }, error => {
-        switch (error) {
+        console.log(error)
+        switch (error['status']) {
           case 401: alert('Wrong credentials!')
             break
 
           case 404: alert('User does not exist!')
             break
 
-          case 500: alert('Server is unavailable!')
+          case 500: alert('Error logging in!')
             break
         }
-
       })
   }
 
   onLogout() {
-    this.loginService.authToken = ''
     this.loggedIn = false
     // this.router.navigate(['/'])
   }
