@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="!fetching && logEntries.length == 0">There are no log entries.</p>
+        <table class="table table-striped" *ngIf="logEntries.length > 0">
+            <tr>
+                <th>Log Id</th>
+                <th>Creation</th>
+                <th>Method</th>
+                <th>Uri</th>
+                <th>Request Headers</th>
+                <th>Request Body</th>
+                <th>Response Status</th>
+                <th>Response Headers</th>
+                <th>Response Body</th>
+            </tr>
+            <tr *ngFor="let logEntry of logEntries">
+                <td> {{ logEntry.logId }} </td>
+                <td> {{ logEntry.logCreationDateTime }} </td>
+                <td> {{ logEntry.requestMethod }} </td>
+                <td> {{ logEntry.requestUri }} </td>
+                <td> {{ logEntry.requestHeaders }} </td>
+                <td> {{ logEntry.requestBody }} </td>
+                <td> {{ logEntry.responseStatus }} </td>
+                <td> {{ logEntry.responseHeaders }} </td>
+                <td> {{ logEntry.responseBody }} </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
