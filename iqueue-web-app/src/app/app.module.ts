@@ -23,6 +23,9 @@ import { OperatorUserComponent } from './operator-user/operator-user.component';
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogEntryComponent } from './log-entry/log-entry.component';
+import { ServiceDeskComponent } from './service-desk/service-desk.component';
+import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component';
+import { DeskUserComponent } from './desk-user/desk-user.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { LogEntryComponent } from './log-entry/log-entry.component';
     OperatorUsersComponent,
     ResetPasswordComponent,
     LogEntryComponent,
+    ServiceDeskComponent,
+    ServiceQueueReportComponent,
+    DeskUserComponent,
   ],
   imports: [
     BrowserModule,

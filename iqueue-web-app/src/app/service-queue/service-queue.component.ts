@@ -19,19 +19,18 @@ export class ServiceQueueComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    if (this.route.snapshot.params['serviceQueueId'] &&
-      this.route.snapshot.params['operatorId']) {
+    if (this.route.snapshot.params['serviceQueueId']) {
       this.createMode = false
-      this.serviceQueue.serviceQueueId = this.route.snapshot.params['serviceQueueId']
-      this.serviceQueue.operatorId = this.route.snapshot.params['operatorId']
+      this.serviceQueue.serviceQueueId = this.route.snapshot.params['serviceQueueId']      
       this.getServiceQueue()
     }
+    this.serviceQueue.operatorId = parseInt(localStorage.getItem('operatorId'))
     this.getServiceQueueTypes()
   }
 
   getServiceQueue() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
+      .get(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueDescription = responseData['serviceQueueDescription']
         this.serviceQueue.serviceQueueTypeId = responseData['serviceQueueTypeId']
@@ -41,7 +40,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onCreateServiceQueue() {
     this.httpService
-      .post(`https://localhost:8443/api/iqueue/operator/servicequeue/`, this.serviceQueue)
+      .post(`https://localhost:8443/api/iqueue/servicequeue/`, this.serviceQueue)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueId = responseData['serviceQueueId']
         alert(`Service Queue successfully created with id ${this.serviceQueue.serviceQueueId}!`)
@@ -54,7 +53,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onUpdateServiceQueue() {
     this.httpService
-      .update(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`,
+      .update(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`,
         this.serviceQueue)
       .subscribe(responseData => {
         alert(`Service Queue with id ${this.serviceQueue.serviceQueueId} successfully updated!`)
@@ -65,7 +64,7 @@ export class ServiceQueueComponent implements OnInit {
   }
 
   onDeleteServiceQueue() {
-    this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.serviceQueue.operatorId}/servicequeue/${this.serviceQueue.serviceQueueId}`)
+    this.httpService.delete(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
       .subscribe(responseData => {
         alert(`Service Queue with id ${this.serviceQueue.serviceQueueId} successfully deleted!`)
         this.router.navigate([`/servicequeues`])

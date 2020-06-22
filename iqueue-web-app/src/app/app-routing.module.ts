@@ -18,13 +18,13 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LogEntryComponent } from './log-entry/log-entry.component'
 
 const routes: Routes = [
-  { path: 'desk/:serviceQueueId/:operatorId/:deskId', component: DeskComponent },
+  { path: 'desk/:deskId', component: DeskComponent },
   { path: 'desk', component: DeskComponent },
   { path: 'desks', component: DesksComponent },
   { path: 'user/:userId', component: UserComponent },
   { path: 'user', component: UserComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'servicequeue/:serviceQueueId/:operatorId', component: ServiceQueueComponent },
+  { path: 'servicequeue/:serviceQueueId', component: ServiceQueueComponent },
   { path: 'servicequeue', component: ServiceQueueComponent },
   { path: 'servicequeues', component: ServiceQueuesComponent },
   { path: 'operator/:operatorId/beacon', component: OperatorBeaconsComponent },

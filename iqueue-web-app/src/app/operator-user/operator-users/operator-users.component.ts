@@ -42,7 +42,9 @@ export class OperatorUsersComponent implements OnInit {
     this.httpService.get('https://localhost:8443/api/iqueue/user')
       .subscribe(responseData => {
         for (const entry in responseData) {
-          this.users.push(responseData[entry])
+          const user: User = responseData[entry]
+          if (user.userProfileId == 2 && !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId ))
+            this.users.push(user)
         }
       })
   }

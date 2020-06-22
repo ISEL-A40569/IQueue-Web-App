@@ -16,7 +16,7 @@
                 <th>Desk Id</th>
                 <th>Description</th>
             </tr>
-            <tr *ngFor="let desk of desks" [routerLink]="['/desk', desk.serviceQueueId, desk.operatorId, desk.deskId]">
+            <tr *ngFor="let desk of desks" [routerLink]="['/desk', desk.deskId]">
                 <td> {{ desk.deskId }} </td>
                 <td> {{ desk.deskDescription }} </td>
             </tr>

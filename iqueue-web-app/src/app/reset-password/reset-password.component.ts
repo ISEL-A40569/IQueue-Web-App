@@ -12,6 +12,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.userid = localStorage.getItem('userId')
   }
 
   onChangePassword() {

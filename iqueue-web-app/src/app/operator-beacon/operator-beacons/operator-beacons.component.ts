@@ -43,7 +43,9 @@ export class OperatorBeaconsComponent implements OnInit {
     this.httpService.get('https://localhost:8443/api/iqueue/beacon')
       .subscribe(responseData => {
         for (const entry in responseData) {
-          this.beacons.push(responseData[entry])
+          const beacon: Beacon = responseData[entry]
+          if (!this.operatorBeacons.some(operatorBeacon => operatorBeacon.beaconId == beacon.beaconId))
+          this.beacons.push(beacon)
         }
       })
   }

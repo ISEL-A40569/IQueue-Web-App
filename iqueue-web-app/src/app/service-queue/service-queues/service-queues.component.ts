@@ -9,16 +9,18 @@ import { HttpService } from '../../services/http-service'
 export class ServiceQueuesComponent implements OnInit {
   serviceQueues: ServiceQueue[] = []
   fetching: boolean = false
+  operatorId: String
 
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    this.operatorId = localStorage.getItem('operatorId')
     this.getServiceQueues()
   }
 
   getServiceQueues() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/operator/servicequeue`)
+    this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue?operatorId=${this.operatorId}`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueues.push(responseData[entry])

@@ -18,7 +18,7 @@ export class DesksComponent implements OnInit {
 
   getDesks() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/operator/servicequeue/desk`)
+    this.httpService.get(`https://localhost:8443/api/iqueue/desk`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.desks.push(responseData[entry])

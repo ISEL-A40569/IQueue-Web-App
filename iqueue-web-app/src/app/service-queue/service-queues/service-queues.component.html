@@ -17,7 +17,7 @@
                 <th>Description</th>
             </tr>
             <tr *ngFor="let serviceQueue of serviceQueues"
-                [routerLink]="['/servicequeue', serviceQueue.serviceQueueId, serviceQueue.operatorId]">
+                [routerLink]="['/servicequeue', serviceQueue.serviceQueueId]">
                 <td> {{ serviceQueue.serviceQueueId }} </td>
                 <td> {{ serviceQueue.serviceQueueDescription }} </td>
             </tr>

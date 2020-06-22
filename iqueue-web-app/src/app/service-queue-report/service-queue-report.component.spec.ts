@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeskComponent } from './desk.component';
+import { ServiceQueueReportComponent } from './service-queue-report.component';
 
-
-describe('DeskComponent', () => {
-  let component: DeskComponent;
-  let fixture: ComponentFixture<DeskComponent>;
+describe('ServiceQueueReportComponent', () => {
+  let component: ServiceQueueReportComponent;
+  let fixture: ComponentFixture<ServiceQueueReportComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeskComponent ]
+      declarations: [ ServiceQueueReportComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeskComponent);
+    fixture = TestBed.createComponent(ServiceQueueReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

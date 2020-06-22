@@ -9,7 +9,7 @@ import { HttpService } from './services/http-service'
 export class AppComponent {
   title = 'iqueue-web-app';
   loggedIn = false
-  userid: string
+  userId: string
   password: string
   userProfileId: number
   operatorId: number
@@ -20,24 +20,28 @@ export class AppComponent {
 
   onLogin() {
     this.httpService
-      .post(`https://localhost:8443/api/iqueue/login`, { userId: this.userid, password: this.password })
+      .post(`https://localhost:8443/api/iqueue/login`, { userId: this.userId, password: this.password })
       .subscribe(response => {
+        localStorage.setItem('userId', this.userId.toString())
 
         this.userProfileId = response['userProfileId']
+        localStorage.setItem('userProfileId', this.userProfileId.toString())
 
         if (this.userProfileId == 2) {
           this.httpService
-            .get(`https://localhost:8443/api/iqueue/operator/user/${this.userid}`)
-            .subscribe(response => {
-              this.operatorId = response['operatorId']
+            .get(`https://localhost:8443/api/iqueue/operator/user/${this.userId}`)
+            .subscribe(response => {              
+              this.operatorId = response[0]['operatorId']
+              localStorage.setItem('operatorId', this.operatorId.toString())
             })
         }
 
         if (this.userProfileId == 3) {
           this.httpService
-            .get(`https://localhost:8443/api/iqueue/desk/user/${this.userid}`)
+            .get(`https://localhost:8443/api/iqueue/desk/user/${this.userId}`)
             .subscribe(response => {
               this.deskId = response['deskId']
+              localStorage.setItem('deskId', this.deskId.toString())
             })
         }
 
@@ -60,6 +64,7 @@ export class AppComponent {
   }
 
   onLogout() {
+    localStorage.clear()
     this.loggedIn = false
     // this.router.navigate(['/'])
   }

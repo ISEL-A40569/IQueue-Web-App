@@ -1,21 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeskComponent } from './desk.component';
+import { DeskUserComponent } from './desk-user.component';
 
-
-describe('DeskComponent', () => {
-  let component: DeskComponent;
-  let fixture: ComponentFixture<DeskComponent>;
+describe('DeskUserComponent', () => {
+  let component: DeskUserComponent;
+  let fixture: ComponentFixture<DeskUserComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeskComponent ]
+      declarations: [ DeskUserComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeskComponent);
+    fixture = TestBed.createComponent(DeskUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
