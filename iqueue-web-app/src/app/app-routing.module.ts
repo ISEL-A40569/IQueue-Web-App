@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+
 import { OperatorComponent } from './operator/operator.component'
-import { OperatorsComponent } from './operator/operators/operators.component';
+import { OperatorsComponent } from './operator/operators/operators.component'
 import { BeaconComponent } from './beacon/beacon.component'
-import { BeaconsComponent } from './beacon/beacons/beacons.component';
+import { BeaconsComponent } from './beacon/beacons/beacons.component'
 import { ServiceQueueComponent } from './service-queue/service-queue.component'
 import { ServiceQueuesComponent } from './service-queue/service-queues/service-queues.component'
 import { UserComponent } from './user/user.component'
@@ -16,8 +17,14 @@ import { OperatorUserComponent } from './operator-user/operator-user.component'
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component'
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
 import { LogEntryComponent } from './log-entry/log-entry.component'
+import { DeskUserComponent } from './desk-user/desk-user.component'
+import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component'
+import { ServiceDeskComponent } from './service-desk/service-desk.component'
 
 const routes: Routes = [
+  { path: 'servicedesk', component: ServiceDeskComponent },
+  { path: 'desk/:deskId/user', component: DeskUsersComponent },
+  { path: 'desk/:deskId/user/:userId', component: DeskUserComponent },
   { path: 'desk/:deskId', component: DeskComponent },
   { path: 'desk', component: DeskComponent },
   { path: 'desks', component: DesksComponent },

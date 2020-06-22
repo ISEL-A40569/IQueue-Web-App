@@ -1,7 +1,10 @@
 <div class="row" *ngIf="!createMode">
-    <div class="col-sm-12">
+    <div class="col-sm-6">
         <h5>Desk {{desk.deskId}}</h5>
     </div>
+    <div class="col-sm-6">
+        <a [routerLink]="['user']">User</a>
+      </div>
 </div>
 
 <div class="row">

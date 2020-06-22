@@ -26,6 +26,7 @@ import { LogEntryComponent } from './log-entry/log-entry.component';
 import { ServiceDeskComponent } from './service-desk/service-desk.component';
 import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component';
 import { DeskUserComponent } from './desk-user/desk-user.component';
+import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DeskUserComponent } from './desk-user/desk-user.component';
     ServiceDeskComponent,
     ServiceQueueReportComponent,
     DeskUserComponent,
+    DeskUsersComponent,
   ],
   imports: [
     BrowserModule,
