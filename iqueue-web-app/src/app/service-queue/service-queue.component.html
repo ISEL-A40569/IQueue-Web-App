@@ -1,6 +1,12 @@
 <div class="row" *ngIf="!createMode">
-    <div class="col-md-12">
+    <div class="col-md-4">
         <h5>Service Queue {{serviceQueue.serviceQueueId}}</h5>
+    </div>
+    <div class="col-sm-4">
+        <a [routerLink]="['desks']">Desks</a>
+    </div>
+    <div class="col-sm-4">
+        <a [routerLink]="['reports']">Reports</a>
     </div>
 </div>
 

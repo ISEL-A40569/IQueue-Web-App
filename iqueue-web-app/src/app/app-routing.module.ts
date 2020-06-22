@@ -20,6 +20,7 @@ import { LogEntryComponent } from './log-entry/log-entry.component'
 import { DeskUserComponent } from './desk-user/desk-user.component'
 import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component'
 import { ServiceDeskComponent } from './service-desk/service-desk.component'
+import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component'
 
 const routes: Routes = [
   { path: 'servicedesk', component: ServiceDeskComponent },
@@ -31,6 +32,8 @@ const routes: Routes = [
   { path: 'user/:userId', component: UserComponent },
   { path: 'user', component: UserComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'servicequeue/:serviceQueueId/reports', component: ServiceQueueReportComponent },
+  { path: 'servicequeue/:serviceQueueId/desks', component: DesksComponent },
   { path: 'servicequeue/:serviceQueueId', component: ServiceQueueComponent },
   { path: 'servicequeue', component: ServiceQueueComponent },
   { path: 'servicequeues', component: ServiceQueuesComponent },
@@ -46,7 +49,7 @@ const routes: Routes = [
   { path: 'beacons', component: BeaconsComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'log', component: LogEntryComponent }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
