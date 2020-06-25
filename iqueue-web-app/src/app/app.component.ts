@@ -40,7 +40,8 @@ export class AppComponent {
           this.httpService
             .get(`https://localhost:8443/api/iqueue/desk/user/${this.userId}`)
             .subscribe(response => {
-              this.deskId = response['deskId']
+              console.log(response)
+              this.deskId = response[0]['deskId']
               localStorage.setItem('deskId', this.deskId.toString())
             })
         }
