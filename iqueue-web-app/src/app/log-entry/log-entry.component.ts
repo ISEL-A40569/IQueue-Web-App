@@ -19,7 +19,8 @@ export class LogEntryComponent implements OnInit {
 
   getLogEntries() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/log`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/log`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/log`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.logEntries.push(responseData[entry])

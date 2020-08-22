@@ -17,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
 
   onChangePassword() {
     this.httpService
-    .update(`https://localhost:8443/api/iqueue/user/${this.userid}/credentials`, 
+    .update(`http://localhost:8080/api/iqueue/user/${this.userid}/credentials`, 
+    // .update(`https://localhost:8443/api/iqueue/user/${this.userid}/credentials`, 
     { userId: this.userid, password: this.password })
     .subscribe(response => {
       alert('Password changed with success')

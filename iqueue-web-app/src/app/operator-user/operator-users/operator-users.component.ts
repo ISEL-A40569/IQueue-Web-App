@@ -26,7 +26,8 @@ export class OperatorUsersComponent implements OnInit {
 
   getOperatorUsers() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/user`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operatorId}/user`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/user`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorUsers.push(responseData[entry])
@@ -39,7 +40,8 @@ export class OperatorUsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get('https://localhost:8443/api/iqueue/user')
+    this.httpService.get('http://localhost:8080/api/iqueue/user')
+    // this.httpService.get('https://localhost:8443/api/iqueue/user')
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
@@ -54,8 +56,9 @@ export class OperatorUsersComponent implements OnInit {
     operatorUser.operatorId = this.operatorId
     operatorUser.userId = this.userId
 
-    this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
-      .subscribe(responseData => {
+    this.httpService.post('http://localhost:8080/api/iqueue/operator/user', operatorUser)
+    // this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
+    .subscribe(responseData => {
         alert(`User ${this.userId} successfully added to operator ${this.operatorId}!`)
         this.operatorUsers.push(operatorUser)
       },

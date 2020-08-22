@@ -26,7 +26,8 @@ export class DeskUsersComponent implements OnInit {
 
   getDeskUsers() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/desk/${this.deskId}/user`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/desk/${this.deskId}/user`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/desk/${this.deskId}/user`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.deskUsers.push(responseData[entry])
@@ -39,8 +40,9 @@ export class DeskUsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get('https://localhost:8443/api/iqueue/user')
-      .subscribe(responseData => {
+    this.httpService.get('http://localhost:8080/api/iqueue/user')
+    // this.httpService.get('https://localhost:8443/api/iqueue/user')
+    .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
           if (user.userProfileId == 3 && !this.deskUsers.some(deskUser => deskUser.userId == user.userId ))
@@ -54,8 +56,9 @@ export class DeskUsersComponent implements OnInit {
     deskUser.deskId = this.deskId
     deskUser.userId = this.userId
 
-    this.httpService.post('https://localhost:8443/api/iqueue/desk/user', deskUser)
-      .subscribe(responseData => {
+    this.httpService.post('http://localhost:8080/api/iqueue/desk/user', deskUser)
+    // this.httpService.post('https://localhost:8443/api/iqueue/desk/user', deskUser)
+    .subscribe(responseData => {
         alert(`User ${this.userId} successfully added to desk ${this.deskId}!`)
         this.deskUsers.push(deskUser)
       },

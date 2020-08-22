@@ -20,8 +20,9 @@ export class DeskUserComponent implements OnInit {
   }
 
   onRemoveUser() {
-    this.httpService.delete(`https://localhost:8443/api/iqueue/desk/${this.deskUser.deskId}/user/${this.deskUser.userId}`)
-      .subscribe(responseData => {
+    this.httpService.delete(`http://localhost:8080/api/iqueue/desk/${this.deskUser.deskId}/user/${this.deskUser.userId}`)
+    // this.httpService.delete(`https://localhost:8443/api/iqueue/desk/${this.deskUser.deskId}/user/${this.deskUser.userId}`)
+    .subscribe(responseData => {
         alert(`User ${this.deskUser.userId} successfully removed from desk ${this.deskUser.deskId} !`)
         this.router.navigate([`/desk/${this.deskUser.deskId}/user`])
       },

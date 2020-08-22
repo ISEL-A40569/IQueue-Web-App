@@ -27,7 +27,8 @@ export class OperatorBeaconsComponent implements OnInit {
 
   getOperatorBeacons() {
     this.fetching = true
-    this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/beacon`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operatorId}/beacon`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/beacon`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorBeacons.push(responseData[entry])
@@ -40,8 +41,9 @@ export class OperatorBeaconsComponent implements OnInit {
 
   getBeacons() {
     this.fetching = true
-    this.httpService.get('https://localhost:8443/api/iqueue/beacon')
-      .subscribe(responseData => {
+    this.httpService.get('http://localhost:8080/api/iqueue/beacon')
+    // this.httpService.get('https://localhost:8443/api/iqueue/beacon')
+    .subscribe(responseData => {
         for (const entry in responseData) {
           const beacon: Beacon = responseData[entry]
           if (!this.operatorBeacons.some(operatorBeacon => operatorBeacon.beaconId == beacon.beaconId))
@@ -55,8 +57,9 @@ export class OperatorBeaconsComponent implements OnInit {
     operatorBeacon.operatorId = this.operatorId
     operatorBeacon.beaconId = this.beaconId
 
-    this.httpService.post('https://localhost:8443/api/iqueue/operator/beacon', operatorBeacon)
-      .subscribe(responseData => {
+    this.httpService.post('http://localhost:8080/api/iqueue/operator/beacon', operatorBeacon)
+    // this.httpService.post('https://localhost:8443/api/iqueue/operator/beacon', operatorBeacon)
+    .subscribe(responseData => {
         alert(`Beacon ${this.beaconId} successfully added to operator ${this.operatorId}!`)
         this.operatorBeacons.push(operatorBeacon)
       },

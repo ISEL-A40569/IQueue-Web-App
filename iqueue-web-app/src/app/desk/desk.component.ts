@@ -28,7 +28,8 @@ export class DeskComponent implements OnInit {
 
   getDesk() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
+      .get(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`)
+      // .get(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
       .subscribe(responseData => {
         this.desk.serviceQueueId = responseData['serviceQueueId']
         this.desk.deskDescription = responseData['deskDescription']
@@ -37,7 +38,8 @@ export class DeskComponent implements OnInit {
 
   onCreateDesk() {
     this.httpService
-      .post(`https://localhost:8443/api/iqueue/desk`, this.desk)
+      .post(`http://localhost:8080/api/iqueue/desk`, this.desk)
+      // .post(`https://localhost:8443/api/iqueue/desk`, this.desk)
       .subscribe(responseData => {
         this.desk.deskId = responseData['deskId']
         alert(`Desk successfully created with id ${this.desk.deskId}!`)
@@ -50,7 +52,8 @@ export class DeskComponent implements OnInit {
 
   onUpdateDesk() {
     this.httpService
-      .update(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`,
+      .update(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`,
+      // .update(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`,
         this.desk)
       .subscribe(responseData => {
         alert(`Desk with id ${this.desk.deskId} successfully updated!`)
@@ -62,7 +65,8 @@ export class DeskComponent implements OnInit {
 
   onDeleteDesk() {
     this.httpService
-      .delete(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
+      .delete(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`)
+      // .delete(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
       .subscribe(responseData => {
         alert(`Desk with id ${this.desk.deskId} successfully deleted!`)
         this.router.navigate([`/desks`])
@@ -74,7 +78,8 @@ export class DeskComponent implements OnInit {
 
   getServiceQueues() {
     const operatorId = localStorage.getItem('operatorId')
-    this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue?operatorId=${operatorId}`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/servicequeue?operatorId=${operatorId}`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue?operatorId=${operatorId}`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueues.push(responseData[entry])

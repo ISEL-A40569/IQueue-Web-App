@@ -20,7 +20,8 @@ export class AppComponent {
 
   onLogin() {
     this.httpService
-      .post(`https://localhost:8443/api/iqueue/login`, { userId: this.userId, password: this.password })
+      // .post(`https://localhost:8443/api/iqueue/login`, { userId: this.userId, password: this.password })
+      .post(`http://localhost:8080/api/iqueue/login`, { userId: this.userId, password: this.password })
       .subscribe(response => {
         localStorage.setItem('userId', this.userId.toString())
 
@@ -29,7 +30,8 @@ export class AppComponent {
 
         if (this.userProfileId == 2) {
           this.httpService
-            .get(`https://localhost:8443/api/iqueue/operator/user/${this.userId}`)
+            .get(`http://localhost:8080/api/iqueue/operator/user/${this.userId}`)
+            // .get(`https://localhost:8443/api/iqueue/operator/user/${this.userId}`)
             .subscribe(response => {              
               this.operatorId = response[0]['operatorId']
               localStorage.setItem('operatorId', this.operatorId.toString())
@@ -38,7 +40,8 @@ export class AppComponent {
 
         if (this.userProfileId == 3) {
           this.httpService
-            .get(`https://localhost:8443/api/iqueue/desk/user/${this.userId}`)
+            .get(`http://localhost:8080/api/iqueue/desk/user/${this.userId}`)
+            // .get(`https://localhost:8443/api/iqueue/desk/user/${this.userId}`)
             .subscribe(response => {
               console.log(response)
               this.deskId = response[0]['deskId']

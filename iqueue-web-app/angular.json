@@ -63,10 +63,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "iqueue-web-app:build",
-            "ssl": true,
-            "sslCert": "ssl/iqueue.crt",
-            "sslKey": "ssl/iqueue.key"
+            "browserTarget": "iqueue-web-app:build"
           },
           "configurations": {
             "production": {

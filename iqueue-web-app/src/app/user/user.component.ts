@@ -28,7 +28,8 @@ export class UserComponent implements OnInit {
 
   getUser() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
+      .get(`http://localhost:8080/api/iqueue/user/${this.user.userId}`)
+      // .get(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
       .subscribe(responseData => {
         this.user.userName = responseData['userName']
         this.user.email = responseData['email']
@@ -40,7 +41,8 @@ export class UserComponent implements OnInit {
 
   onCreateUser() {
     this.httpService
-      .post(`https://localhost:8443/api/iqueue/user`, this.user)
+      .post(`http://localhost:8080/api/iqueue/user`, this.user)
+      // .post(`https://localhost:8443/api/iqueue/user`, this.user)
       .subscribe(responseData => {
         this.user.userId = responseData['userId']
         alert(`User successfully created with id ${this.user.userId}!`)
@@ -53,7 +55,8 @@ export class UserComponent implements OnInit {
 
   onUpdateUser() {
     this.httpService
-      .update(`https://localhost:8443/api/iqueue/user/${this.user.userId}`,
+      .update(`http://localhost:8080/api/iqueue/user/${this.user.userId}`,
+      // .update(`https://localhost:8443/api/iqueue/user/${this.user.userId}`,
         this.user)
       .subscribe(responseData => {
         alert(`User with id ${this.user.userId} successfully updated!`)
@@ -64,7 +67,8 @@ export class UserComponent implements OnInit {
   }
 
   onDeleteUser() {
-    this.httpService.delete(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
+    this.httpService.delete(`http://localhost:8080/api/iqueue/user/${this.user.userId}`)
+    // this.httpService.delete(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
       .subscribe(responseData => {
         alert(`User with id ${this.user.userId} successfully deleted!`)
         this.router.navigate([`/users`])
@@ -76,7 +80,8 @@ export class UserComponent implements OnInit {
 
   getUserProfiles() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/userprofile?languageId=1`)
+      .get(`http://localhost:8080/api/iqueue/userprofile?languageId=1`)
+      // .get(`https://localhost:8443/api/iqueue/userprofile?languageId=1`)
       .subscribe(responseData => {
         for (let entry in responseData) {
           this.userProfiles.push(responseData[entry])

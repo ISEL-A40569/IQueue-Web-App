@@ -23,9 +23,11 @@ export class DesksComponent implements OnInit {
   getDesks() {
     let uri: string
     if (this.serviceQueueId) {
-      uri = `https://localhost:8443/api/iqueue/desk?serviceQueueId=${this.serviceQueueId}`
+      uri = `http://localhost:8080/api/iqueue/desk?serviceQueueId=${this.serviceQueueId}`
+      // uri = `https://localhost:8443/api/iqueue/desk?serviceQueueId=${this.serviceQueueId}`
     } else {
-      uri = `https://localhost:8443/api/iqueue/desk`
+      uri = `http://localhost:8080/api/iqueue/desk`
+      // uri = `https://localhost:8443/api/iqueue/desk`
     }
 
     this.fetching = true

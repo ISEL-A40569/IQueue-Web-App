@@ -3,9 +3,9 @@ export class Attendance {
     serviceQueueId: number
     deskId: number
     clientId: number
-    startWaitingDateTime: Date
-    startAttendanceDateTime: Date
-    endAttendanceDateTime: Date
+    startWaitingDateTime: String
+    startAttendanceDateTime: String
+    endAttendanceDateTime: String
     attendanceStatusId: number
 }
 

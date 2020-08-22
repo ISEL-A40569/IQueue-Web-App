@@ -18,7 +18,8 @@ export class OperatorsComponent implements OnInit {
 
   getOperators() {
     this.fetching = true
-    this.httpService.get('https://localhost:8443/api/iqueue/operator')
+    this.httpService.get('http://localhost:8080/api/iqueue/operator')
+    // this.httpService.get('https://localhost:8443/api/iqueue/operator')
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operators.push(responseData[entry])

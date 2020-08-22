@@ -24,7 +24,8 @@ export class OperatorComponent implements OnInit {
   }
 
   getOperator() {
-    this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`)
+    this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operator.operatorId}`)
+    // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`)
       .subscribe(responseData => {
         this.operator.operatorDescription = responseData['operatorDescription']
         this.operator.email = responseData['email']
@@ -34,7 +35,8 @@ export class OperatorComponent implements OnInit {
   }
 
   onCreateOperator() {
-    this.httpService.post('https://localhost:8443/api/iqueue/operator', this.operator).subscribe(responseData => {
+    this.httpService.post('http://localhost:8080/api/iqueue/operator', this.operator).subscribe(responseData => {
+      // this.httpService.post('https://localhost:8443/api/iqueue/operator', this.operator).subscribe(responseData => {
       this.operator.operatorId = responseData['operatorId']
       alert(`Operator successfully created with id ${this.operator.operatorId}!`)
       this.createMode = false
@@ -45,7 +47,8 @@ export class OperatorComponent implements OnInit {
   }
 
   onUpdateOperator() {
-    this.httpService.update(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`,
+    this.httpService.update(`http://localhost:8080/api/iqueue/operator/${this.operator.operatorId}`,
+    // this.httpService.update(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`,
       this.operator)
       .subscribe(responseData => {
         alert(`Operator with id ${this.operator.operatorId} successfully updated!`)
@@ -56,7 +59,8 @@ export class OperatorComponent implements OnInit {
   }
 
   onDeleteOperator() {
-    this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`)
+    this.httpService.delete(`http://localhost:8080/api/iqueue/operator/${this.operator.operatorId}`)
+    // this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.operator.operatorId}`)
       .subscribe(responseData => {
         alert(`Operator with id ${this.operator.operatorId} successfully deleted!`)
         this.router.navigate(['/operators'])

@@ -24,7 +24,8 @@ export class ServiceQueueReportComponent implements OnInit {
 
   getServiceQueueStatistic() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueueId}/statistics`)
+      .get(`http://localhost:8080/api/iqueue/servicequeue/${this.serviceQueueId}/statistics`)
+      // .get(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueueId}/statistics`)
       .subscribe(responseData => {
         this.serviceQueueStatistics.attendanceCount = responseData['attendanceCount']
         this.serviceQueueStatistics.averageWaitingTime = responseData['averageWaitingTime']
@@ -37,7 +38,8 @@ export class ServiceQueueReportComponent implements OnInit {
   // TODO: THIS IS HORRIBLE, MUST RE-THINK AND RE-WRITE THIS SHIT!!!
   getAttendanceClassifications() {
     this.httpService
-      .get(`https://localhost:8443/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
+      .get(`http://localhost:8080/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
+      // .get(`https://localhost:8443/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
       .subscribe(responseData => {
         console.log(responseData)
 
@@ -45,7 +47,8 @@ export class ServiceQueueReportComponent implements OnInit {
           const attendanceId = responseData[entry]['attendanceId']
 
           this.httpService
-            .get(`https://localhost:8443/api/iqueue/attendance/${attendanceId}/classification`)
+            .get(`http://localhost:8080/api/iqueue/attendance/${attendanceId}/classification`)
+            // .get(`https://localhost:8443/api/iqueue/attendance/${attendanceId}/classification`)
             .subscribe(responseData => {
               let attendanceClassification: AttendanceClassification = new AttendanceClassification()
               attendanceClassification.classificationCreationDateTime = responseData['classificationCreationDateTime']

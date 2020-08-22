@@ -20,8 +20,9 @@ export class OperatorUserComponent implements OnInit {
   }
 
   onRemoveUser() {
-    this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.operatorUser.operatorId}/user/${this.operatorUser.userId}`)
-      .subscribe(responseData => {
+    this.httpService.delete(`http://localhost:8080/api/iqueue/operator/${this.operatorUser.operatorId}/user/${this.operatorUser.userId}`)
+    // this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.operatorUser.operatorId}/user/${this.operatorUser.userId}`)
+    .subscribe(responseData => {
         alert(`User ${this.operatorUser.userId} successfully removed from operator ${this.operatorUser.operatorId} !`)
         this.router.navigate([`/operator/${this.operatorUser.operatorId}/user`])
       },
