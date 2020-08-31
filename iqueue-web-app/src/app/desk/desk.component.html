@@ -1,9 +1,9 @@
 <div class="row" *ngIf="!createMode">
     <div class="col-sm-6">
-        <h5>Desk {{desk.deskId}}</h5>
+        <h5>{{'DESK' | translate}} {{desk.deskId}}</h5>
     </div>
     <div class="col-sm-6">
-        <a [routerLink]="['user']">User</a>
+        <a [routerLink]="['user']">{{'USER' | translate}}</a>
       </div>
 </div>
 
@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="row">
-                <label for="selectServiceQueue">Service Queue</label>
+                <label for="selectServiceQueue">{{'SERVICE_QUEUE' | translate}}</label>
             </div>
             <div class="row">
                 <select name="selectServiceQueue" id="selectServiceQueue"
@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="desk.deskDescription">Desk Description</label>
+            <label for="desk.deskDescription">{{'DESK_DESCRIPTION' | translate}}</label>
             <input type="text" id="desk.deskDescription" class="form-control" [(ngModel)]="desk.deskDescription">
         </div>
     </div>
@@ -38,11 +38,11 @@
 <div class="row">
     <div class="col-md-12">
         <div *ngIf="createMode">
-            <button class="btn btn-primary" (click)="onCreateDesk()">Add</button>
+            <button class="btn btn-primary" (click)="onCreateDesk()">{{'ADD' | translate}}</button>
         </div>
         <div *ngIf="!createMode">
-            <button class="btn btn-primary" (click)="onUpdateDesk()">Update</button>
-            <button class="btn btn-primary" (click)="onDeleteDesk()">Remove</button>
+            <button class="btn btn-primary" (click)="onUpdateDesk()">{{'UPDATE' | translate}}</button>
+            <button class="btn btn-primary" (click)="onDeleteDesk()">{{'REMOVE' | translate}}</button>
         </div>
     </div>
 </div>

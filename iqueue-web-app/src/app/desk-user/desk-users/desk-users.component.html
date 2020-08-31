@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="deskUsers.length == 0 && !fetching">There are no users for desk {{ deskId }}.</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
+        <p *ngIf="deskUsers.length == 0 && !fetching">{{'NO_DESK'}} {{ deskId }}.</p>
         <table class="table table-striped" *ngIf="deskUsers.length > 0">
             <tr>
-                <th>User Id</th>
+                <th>{{'USER_ID' | translate}}</th>
             </tr>
             <tr *ngFor="let deskUser of deskUsers" [routerLink]="[deskUser.userId]">
                 <td> {{ deskUser.userId }} </td>
@@ -19,7 +19,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="row">
-                <label for="selectUser">User</label>
+                <label for="selectUser">{{'USER' | translate}}</label>
             </div>
             <div class="row">
                 <select name="selectUser" id="selectUser" [(ngModel)]="userId">
@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div>
-                <button class="btn btn-primary" (click)="onAddUser()">Add</button>
+                <button class="btn btn-primary" (click)="onAddUser()">{{'ADD' | translate}}</button>
             </div>
         </div>
     </div>

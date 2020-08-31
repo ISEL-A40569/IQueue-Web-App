@@ -1,7 +1,7 @@
 <div class="row" *ngIf="!serviceQueueId">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <a [routerLink]="['/desk']">Add Desk</a>
+        <a [routerLink]="['/desk']">{{'ADD_DESK' | translate}}</a>
     </div>
     <div class="col-md-2"></div>
 </div>
@@ -9,12 +9,12 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="!fetching && desks.length == 0">There are no desks.</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
+        <p *ngIf="!fetching && desks.length == 0">{{'NO_DESKS' | translate}}</p>
         <table class="table table-striped" *ngIf="desks.length > 0">
             <tr>
-                <th>Desk Id</th>
-                <th>Description</th>
+                <th>{{'DESK_ID' | translate}}</th>
+                <th>{{'DESK_DESCRIPTION' | translate}}</th>
             </tr>
             <tr *ngFor="let desk of desks" [routerLink]="['/desk', desk.deskId]">
                 <td> {{ desk.deskId }} </td>

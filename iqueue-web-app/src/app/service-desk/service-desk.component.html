@@ -1,34 +1,34 @@
 <div class="row">
     <div class="col-sm-6">
-        <h5>Currently Waiting {{waitingCount}}</h5>
+        <h5>{{'WAITING' | translate}} {{waitingCount}}</h5>
     </div>
     <div class="col-sm-6">
-        <h4>Attending {{attendanceTicket.ticketNumber}}</h4>
+        <h4>{{'ATTENDING' | translate}} {{attendanceTicket.ticketNumber}}</h4>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-3">
         <div>
-            <button class="btn btn-primary" (click)="onCallNext()">Call Next</button>
+            <button class="btn btn-primary" (click)="onCallNext()">{{'NEXT' | translate}}</button>
         </div>
     </div>
 
     <div class="col-md-3">
         <div>
-            <button class="btn btn-primary" (click)="onCallAgain()">Call Again</button>
+            <button class="btn btn-primary" (click)="onCallAgain()">{{'AGAIN' | translate}}</button>
         </div>
     </div>
 
     <div class="col-md-3">
         <div>
-            <button class="btn btn-primary" (click)="onFinishAttendance()">Finish</button>
+            <button class="btn btn-primary" (click)="onFinishAttendance()">{{'FINISH' | translate}}</button>
         </div>
     </div>
 
     <div class="col-md-3">
         <div>
-            <button class="btn btn-primary" (click)="onSetQuit()">Set Quit</button>
+            <button class="btn btn-primary" (click)="onSetQuit()">{{'QUIT' | translate}}</button>
         </div>
     </div>
 </div>

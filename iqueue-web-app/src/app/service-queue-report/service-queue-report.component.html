@@ -1,48 +1,48 @@
 <div class="row">
     <div class="col-sm-12">
-        <h5>Statistics for ServiceQueue {{serviceQueueId}}</h5> 
+        <h5>{{'STATISTICS' | translate}} {{serviceQueueId}}</h5> 
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
-        <h6>Attendance Count: {{serviceQueueStatistics.attendanceCount}}</h6>        
+        <h6>{{'COUNT' | translate}}: {{serviceQueueStatistics.attendanceCount}}</h6>        
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
-        <h6>Average Waiting Time: {{serviceQueueStatistics.averageWaitingTime}}</h6>        
+        <h6>{{'WAITING_TIME' | translate}}: {{serviceQueueStatistics.averageWaitingTime}}</h6>        
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
-        <h6>Average Attendance Time: {{serviceQueueStatistics.averageAttendanceTime}}</h6>        
+        <h6>{{'ATTENDANCE_TIME' | translate}}: {{serviceQueueStatistics.averageAttendanceTime}}</h6>        
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
-        <h6>Average Rate: {{serviceQueueStatistics.averageRate}}</h6>        
+        <h6>{{'AVERAGE_RATE' | translate}}: {{serviceQueueStatistics.averageRate}}</h6>        
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
-        <h6>Quit Count: {{serviceQueueStatistics.quitCount}}</h6>        
+        <h6>{{'QUIT_COUNT' | translate}}: {{serviceQueueStatistics.quitCount}}</h6>        
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p *ngIf="attendanceClassifications.length == 0">There are no classifications.</p>
+        <p *ngIf="attendanceClassifications.length == 0">{{'NO_CLASSIFICATIONS' | translate}}.</p>
         <table class="table table-striped" *ngIf="attendanceClassifications.length > 0">
             <tr>
-                <th>Creation</th>
-                <th>Rate</th>
-                <th>Observations</th>
+                <th>{{'CREATION' | translate}}</th>
+                <th>{{'RATE' | translate}}</th>
+                <th>{{'OBSERVATIONS' | translate}}</th>
             </tr>
             <tr *ngFor="let attendanceClassification of attendanceClassifications">
                 <td> {{ attendanceClassification.classificationCreationDateTime }} </td>

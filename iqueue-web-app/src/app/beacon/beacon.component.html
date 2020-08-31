@@ -1,13 +1,13 @@
 <div class="row" *ngIf="!createMode">
     <div class="col-sm-12">
-        <h5>Beacon {{beacon.beaconId}}</h5>
+        <h5>{{'BEACON' | translate}} {{beacon.beaconId}}</h5>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="beacon.beaconMacAddress">Mac Address</label>
+            <label for="beacon.beaconMacAddress">{{'MAC' | translate}}</label>
             <input type="text" id="beacon.beaconMacAddress" class="form-control" [(ngModel)]="beacon.beaconMacAddress">
         </div>
     </div>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="beacon.namespaceId">NamespaceId</label>
+            <label for="beacon.namespaceId">{{'NAMESPACE' | translate}}</label>
             <input type="text" id="beacon.namespaceId" class="form-control" [(ngModel)]="beacon.namespaceId">
         </div>
     </div>
@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="beacon.instanceId">InstanceId</label>
+            <label for="beacon.instanceId">{{'INSTANCE' | translate}}</label>
             <input type="text" id="beacon.instanceId" class="form-control" [(ngModel)]="beacon.instanceId">
         </div>
     </div>
@@ -34,7 +34,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="beacon.manufacturer">Manufacturer</label>
+            <label for="beacon.manufacturer">{{'MANUFACTURER' | translate}}</label>
             <input type="text" id="beacon.manufacturer" class="form-control" [(ngModel)]="beacon.manufacturer">
         </div>
     </div>
@@ -43,7 +43,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
-            <label for="beacon.model">Model</label>
+            <label for="beacon.model">{{'MODEL' | translate}}</label>
             <input type="text" id="beacon.model" class="form-control" [(ngModel)]="beacon.model">
         </div>
     </div>
@@ -52,11 +52,11 @@
 <div class="row">
     <div class="col-sm-12">
         <div *ngIf="createMode">
-            <button class="btn btn-primary" (click)="onCreateBeacon()">Add</button>
+            <button class="btn btn-primary" (click)="onCreateBeacon()">{{'ADD' | translate}}</button>
         </div>
         <div *ngIf="!createMode">
-            <button class="btn btn-primary" (click)="onUpdateBeacon()">Update</button>
-            <button class="btn btn-primary" (click)="onDeleteBeacon()">Remove</button>
+            <button class="btn btn-primary" (click)="onUpdateBeacon()">{{'UPDATE' | translate}}</button>
+            <button class="btn btn-primary" (click)="onDeleteBeacon()">{{'REMOVE' | translate}}</button>
         </div>
     </div>
 </div>

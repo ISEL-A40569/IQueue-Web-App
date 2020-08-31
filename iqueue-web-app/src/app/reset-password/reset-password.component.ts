@@ -9,7 +9,9 @@ export class ResetPasswordComponent implements OnInit {
   userid: string
   password: string
   
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {
+
+    }
 
   ngOnInit(): void {
     this.userid = localStorage.getItem('userId')

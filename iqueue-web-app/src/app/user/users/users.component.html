@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <a [routerLink]="['/user']">Add User</a>
+        <a [routerLink]="['/user']">{{'ADD_USER' | translate}}</a>
     </div>
     <div class="col-md-2"></div>
 </div>
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="!fetching && users.length == 0">There are no users.</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
+        <p *ngIf="!fetching && users.length == 0">{{'NO_USERS' | translate}}.</p>
         <table class="table table-striped" *ngIf="users.length > 0">
             <tr>
-                <th>User Id</th>
-                <th>User Name</th>
+                <th>{{'USER_ID' | translate}}</th>
+                <th>{{'NAME' | translate}}</th>
             </tr>
             <tr *ngFor="let user of users" [routerLink]="['/user', user.userId]">
                 <td> {{ user.userId }} </td>

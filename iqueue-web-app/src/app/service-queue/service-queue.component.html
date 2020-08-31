@@ -1,19 +1,19 @@
 <div class="row" *ngIf="!createMode">
     <div class="col-md-4">
-        <h5>Service Queue {{serviceQueue.serviceQueueId}}</h5>
+        <h5>{{'SERVICE_QUEUE' | translate}} {{serviceQueue.serviceQueueId}}</h5>
     </div>
     <div class="col-sm-4">
-        <a [routerLink]="['desks']">Desks</a>
+        <a [routerLink]="['desks']">{{'DESKS' | translate}}</a>
     </div>
     <div class="col-sm-4">
-        <a [routerLink]="['reports']">Reports</a>
+        <a [routerLink]="['reports']">{{'REPORTS' | translate}}</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="serviceQueue.serviceQueueDescription">Service Queue Description</label>
+            <label for="serviceQueue.serviceQueueDescription">{{'SERVICE_QUEUE_DESCRIPTION' | translate}}</label>
             <input type="text" id="serviceQueue.serviceQueueDescription" class="form-control"
                 [(ngModel)]="serviceQueue.serviceQueueDescription">
         </div>
@@ -24,7 +24,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <div class="row">
-                <label for="selectServiceQueueType">Service Queue Type</label>
+                <label for="selectServiceQueueType">{{'SERVICE_QUEUE_TYPE' | translate}}</label>
             </div>
             <div class="row">
                 <select name="selectServiceQueueType" id="selectServiceQueueType"
@@ -42,7 +42,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="serviceQueue.dailyLimit">Service Queue Daily Limit</label>
+            <label for="serviceQueue.dailyLimit">{{'DAILY_LIMIT' | translate}}</label>
             <input type="number" id="serviceQueue.dailyLimit" class="form-control"
                 [(ngModel)]="serviceQueue.dailyLimit">
         </div>
@@ -52,11 +52,11 @@
 <div class="row">
     <div class="col-md-12">
         <div *ngIf="createMode">
-            <button class="btn btn-primary" (click)="onCreateServiceQueue()">Add</button>
+            <button class="btn btn-primary" (click)="onCreateServiceQueue()">{{'ADD' | translate}}</button>
         </div>
         <div *ngIf="!createMode">
-            <button class="btn btn-primary" (click)="onUpdateServiceQueue()">Update</button>
-            <button class="btn btn-primary" (click)="onDeleteServiceQueue()">Remove</button>
+            <button class="btn btn-primary" (click)="onUpdateServiceQueue()">{{'UPDATE' | translate}}</button>
+            <button class="btn btn-primary" (click)="onDeleteServiceQueue()">{{'REMOVE' | translate}}</button>
         </div>
     </div>
 </div>

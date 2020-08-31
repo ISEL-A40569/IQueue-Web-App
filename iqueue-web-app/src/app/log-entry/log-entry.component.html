@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p *ngIf="fetching">Loading...</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
         <table class="table table-striped" *ngIf="!fetching">
             <tr>
-                <th>Log Id</th>
-                <th>Creation</th>
-                <th>Method</th>
-                <th>Uri</th>
+                <th>{{'LOG_ID' | translate}}</th>
+                <th>{{'CREATION' | translate}}</th>
+                <th>{{'METHOD' | translate}}</th>
+                <th>{{'URI' | translate}}</th>
                 <!-- <th>Request Headers</th>
                 <th>Request Body</th> -->
-                <th>Response Status</th>
+                <th>{{'RESPONSE_STATUS' | translate}}</th>
                 <!-- <th>Response Headers</th>
                 <th>Response Body</th> -->
             </tr>

@@ -1,13 +1,13 @@
 <div class="row" *ngIf="!createMode">
   <div class="col-sm-12">
-    <h5>User {{user.userId}}</h5>
+    <h5>{{'USER' | translate}} {{user.userId}}</h5>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group">
-      <label for="user.userName">User Name</label>
+      <label for="user.userName">{{'NAME' | translate}}</label>
       <input type="text" id="user.userName" class="form-control" [(ngModel)]="user.userName">
     </div>
   </div>
@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group">
-      <label for="user.email">User E-mail</label>
+      <label for="user.email">{{'EMAIL' | translate}}</label>
       <input type="text" id="user.email" class="form-control" [(ngModel)]="user.email">
     </div>
   </div>
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group">
-      <label for="user.telephoneNumber">User TelephoneNumber</label>
+      <label for="user.telephoneNumber">{{'TELEPHONE' | translate}}</label>
       <input type="text" id="user.telephoneNumber" class="form-control" [(ngModel)]="user.telephoneNumber">
     </div>
   </div>
@@ -34,7 +34,7 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="form-group">
-      <label for="user.address">User Address</label>
+      <label for="user.address">{{'ADDRESS' | translate}}</label>
       <input type="text" id="user.address" class="form-control" [(ngModel)]="user.address">
     </div>
   </div>
@@ -44,7 +44,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <div class="row">
-        <label for="selectUserProfile">User Profile</label>
+        <label for="selectUserProfile">{{'USER_PROFILE' | translate}}</label>
       </div>
       <div class="row">
         <select name="selectUserProfile" id="selectUserProfile" [(ngModel)]="user.userProfileId">
@@ -60,11 +60,11 @@
 <div class="row">
   <div class="col-sm-12">
     <div *ngIf="createMode">
-      <button class="btn btn-primary" (click)="onCreateUser()">Add</button>
+      <button class="btn btn-primary" (click)="onCreateUser()">{{'ADD' | translate}}</button>
     </div>
     <div *ngIf="!createMode">
-      <button class="btn btn-primary" (click)="onUpdateUser()">Update</button>
-      <button class="btn btn-primary" (click)="onDeleteUser()">Remove</button>
+      <button class="btn btn-primary" (click)="onUpdateUser()">{{'UPDATE' | translate}}</button>
+      <button class="btn btn-primary" (click)="onDeleteUser()">{{'REMOVE' | translate}}</button>
     </div>
   </div>
 </div>

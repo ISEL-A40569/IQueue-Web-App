@@ -1,20 +1,20 @@
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <a [routerLink]="['/beacon']">Add Beacon</a>
+        <a [routerLink]="['/beacon']">{{'ADD_BEACON' | translate}}</a>
     </div>
     <div class="col-sm-2"></div>
 </div>
 <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="beacons.length == 0 && !fetching">There are no beacons.</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
+        <p *ngIf="beacons.length == 0 && !fetching">{{'NO_BEACONS' | translate}}</p>
         <table class="table table-striped" *ngIf="beacons.length > 0">
             <tr>
-                <th>Beacon Id</th>
-                <th>Manufacturer</th>
-                <th>Model</th>
+                <th>{{'BEACON_ID' | translate}}</th>
+                <th>{{'MANUFACTURER' | translate}}</th>
+                <th>{{'MODEL' | translate}}</th>
             </tr>
             <tr *ngFor="let beacon of beacons" [routerLink]="['/beacon', beacon.beaconId]">
                 <td> {{ beacon.beaconId }} </td>

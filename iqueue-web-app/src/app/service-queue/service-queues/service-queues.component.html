@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <a [routerLink]="['/servicequeue']">Add Service Queue</a>
+        <a [routerLink]="['/servicequeue']">{{'ADD_SERVICE_QUEUE' | translate}}</a>
     </div>
     <div class="col-md-2"></div>
 </div>
@@ -9,12 +9,12 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p *ngIf="fetching">Loading...</p>
-        <p *ngIf="!fetching && serviceQueues.length == 0">There are no service queues.</p>
+        <p *ngIf="fetching">{{'LOADING' | translate}}</p>
+        <p *ngIf="!fetching && serviceQueues.length == 0">{{'NO_SERVICE_QUEUES' | translate}}.</p>
         <table class="table table-striped" *ngIf="serviceQueues.length > 0">
             <tr>
-                <th>Service Queue Id</th>
-                <th>Description</th>
+                <th>{{'NO_SERVICE_ID' | translate}}</th>
+                <th>{{'SERVICE_QUEUE_DESCRIPTION' | translate}}Description</th>
             </tr>
             <tr *ngFor="let serviceQueue of serviceQueues"
                 [routerLink]="['/servicequeue', serviceQueue.serviceQueueId]">

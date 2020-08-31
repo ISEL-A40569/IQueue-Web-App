@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from './services/http-service'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,11 @@ export class AppComponent {
   deskId: number
 
   constructor(private router: Router,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private translateService: TranslateService) {
+      translateService.setDefaultLang('en')
+      translateService.use('pt')
+     }
 
   onLogin() {
     this.httpService

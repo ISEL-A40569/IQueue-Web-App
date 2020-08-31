@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-sm-12">
-        <p>User id: {{ deskUser.userId }}</p>
+        <p>{{'USER_ID' | translate}} {{ deskUser.userId }}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
         <div>
-            <button class="btn btn-primary" (click)="onRemoveUser()">Remove</button>
+            <button class="btn btn-primary" (click)="onRemoveUser()">{{'REMOVE' | translate}}</button>
         </div>
     </div>
 </div>
