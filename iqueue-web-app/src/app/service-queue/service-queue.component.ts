@@ -22,6 +22,8 @@ export class ServiceQueueComponent implements OnInit {
     private cookieService: CookieService,
     private translateService: TranslateService) { }
 
+  readonly DEFAULT_LANGUAGE_ID = '1'
+
   ngOnInit(): void {
     if (this.route.snapshot.params['serviceQueueId']) {
       this.createMode = false
@@ -32,7 +34,7 @@ export class ServiceQueueComponent implements OnInit {
 
     this.languageId = this.cookieService.get('languageId')
     if (!this.languageId)
-      this.languageId = '1'
+      this.languageId = this.DEFAULT_LANGUAGE_ID
 
     this.getServiceQueueTypes()
   }
@@ -54,9 +56,11 @@ export class ServiceQueueComponent implements OnInit {
       // .post(`https://localhost:8443/api/iqueue/servicequeue/`, this.serviceQueue)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueId = responseData['serviceQueueId']
-        this.translateService.get('SERVICEQUEUE_CREATE_SUCCESS', { serviceQueueId: this.serviceQueue.serviceQueueId }).subscribe(text =>
-          alert(text)
-        )
+        this.translateService
+          .get('SERVICEQUEUE_CREATE_SUCCESS', { serviceQueueId: this.serviceQueue.serviceQueueId })
+          .subscribe(text =>
+            alert(text)
+          )
         this.createMode = false
       },
         error => {
@@ -72,14 +76,16 @@ export class ServiceQueueComponent implements OnInit {
         // .update(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`,
         this.serviceQueue)
       .subscribe(responseData => {
-        this.translateService.get('SERVICEQUEUE_UPDATE_SUCCESS', { serviceQueueId: this.serviceQueue.serviceQueueId }).subscribe(text =>
-          alert(text)
-        )
+        this.translateService
+          .get('SERVICEQUEUE_UPDATE_SUCCESS', { serviceQueueId: this.serviceQueue.serviceQueueId })
+          .subscribe(text =>
+            alert(text)
+          )
       },
         error => {
           this.translateService.get('SERVICEQUEUE_UPDATE_ERROR').subscribe(text =>
             alert(`${text} ${this.serviceQueue.serviceQueueId}!`)
-            )
+          )
         })
   }
 
@@ -96,7 +102,7 @@ export class ServiceQueueComponent implements OnInit {
         error => {
           this.translateService.get('SERVICEQUEUE_DELETE_ERROR').subscribe(text =>
             alert(`${text} ${this.serviceQueue.serviceQueueId}!`)
-            )
+          )
         })
   }
 

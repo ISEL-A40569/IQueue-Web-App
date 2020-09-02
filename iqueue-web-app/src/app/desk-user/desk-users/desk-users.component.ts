@@ -16,6 +16,8 @@ export class DeskUsersComponent implements OnInit {
   userId: number
   users: User[] = []
 
+  readonly SERVICE_PROFILE_ID = 3
+
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private translateService: TranslateService) { }
@@ -47,7 +49,8 @@ export class DeskUsersComponent implements OnInit {
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
-          if (user.userProfileId == 3 && !this.deskUsers.some(deskUser => deskUser.userId == user.userId))
+          if (user.userProfileId == this.SERVICE_PROFILE_ID &&
+            !this.deskUsers.some(deskUser => deskUser.userId == user.userId))
             this.users.push(user)
         }
       })

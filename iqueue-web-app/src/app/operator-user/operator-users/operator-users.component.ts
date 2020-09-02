@@ -16,6 +16,8 @@ export class OperatorUsersComponent implements OnInit {
   userId: number
   users: User[] = []
 
+  readonly MANAGER_PROFILE_ID = 2
+
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private translateService: TranslateService) { }
@@ -47,7 +49,8 @@ export class OperatorUsersComponent implements OnInit {
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
-          if (user.userProfileId == 2 && !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId))
+          if (user.userProfileId == this.MANAGER_PROFILE_ID && 
+            !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId))
             this.users.push(user)
         }
       })

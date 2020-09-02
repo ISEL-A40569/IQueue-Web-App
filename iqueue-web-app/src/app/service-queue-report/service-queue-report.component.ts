@@ -41,8 +41,6 @@ export class ServiceQueueReportComponent implements OnInit {
       .get(`http://localhost:8080/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
       // .get(`https://localhost:8443/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
       .subscribe(responseData => {
-        console.log(responseData)
-
         for (const entry in responseData) {
           const attendanceId = responseData[entry]['attendanceId']
 

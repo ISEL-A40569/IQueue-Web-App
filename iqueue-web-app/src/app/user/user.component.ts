@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   userProfiles: UserProfile[] = []
   languageId: string
 
+  readonly DEFAULT_LANGUAGE_ID = '1'
+
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private router: Router,
@@ -30,7 +32,7 @@ export class UserComponent implements OnInit {
     }
     this.languageId = this.cookieService.get('languageId')
     if (!this.languageId)
-      this.languageId = '1'
+      this.languageId = this.DEFAULT_LANGUAGE_ID
 
     this.getUserProfiles()
   }

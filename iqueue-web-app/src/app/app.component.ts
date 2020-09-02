@@ -17,6 +17,8 @@ export class AppComponent {
   operatorId: number
   deskId: number
 
+  readonly DEFAULT_LANGUAGE = 'en'
+
   constructor(private router: Router,
     private httpService: HttpService,
     private translateService: TranslateService,
@@ -24,7 +26,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.translateService.use('en')
+    this.translateService.use(this.DEFAULT_LANGUAGE)
     this.getLanguage()
   }
 

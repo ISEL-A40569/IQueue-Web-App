@@ -15,6 +15,10 @@ export class ServiceDeskComponent implements OnInit {
   attendance: Attendance = new Attendance()
   attendanceTicket: AttendanceTicket = new AttendanceTicket()
 
+  readonly IN_ATTENDANCE_STATUS_ID = 2
+  readonly ATTENDANCE_DONE_STATUS_ID = 3
+  readonly ATTENDANCE_QUIT_STATUS_ID = 4
+
   constructor(private httpService: HttpService,
     private datePipe: DatePipe) { }
 
@@ -44,7 +48,7 @@ export class ServiceDeskComponent implements OnInit {
         this.attendance.startWaitingDateTime = responseData['startWaitingDateTime']
         this.attendance.startAttendanceDateTime = this.getCurrentDateTime()
         this.attendance.endAttendanceDateTime = null
-        this.attendance.attendanceStatusId = 2
+        this.attendance.attendanceStatusId = this.IN_ATTENDANCE_STATUS_ID
 
         this.updateAttendance()
         this.getWaitingCount()
@@ -76,13 +80,13 @@ export class ServiceDeskComponent implements OnInit {
 
   onFinishAttendance() {
     this.attendance.endAttendanceDateTime = this.getCurrentDateTime()
-    this.attendance.attendanceStatusId = 3
+    this.attendance.attendanceStatusId = this.ATTENDANCE_DONE_STATUS_ID
     this.updateAttendance()
     this.getWaitingCount()
   }
 
   onSetQuit() {
-    this.attendance.attendanceStatusId = 4
+    this.attendance.attendanceStatusId = this.ATTENDANCE_QUIT_STATUS_ID
     this.updateAttendance()
     this.getWaitingCount()
   }

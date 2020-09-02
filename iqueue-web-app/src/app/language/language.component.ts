@@ -17,11 +17,13 @@ export class LanguageComponent implements OnInit {
     private translateService: TranslateService,
     private cookieService: CookieService) { }
 
+    readonly DEFAULT_LANGUAGE_ID = 1
+
   ngOnInit(): void {
     this.getLanguages()
     this.language.languageId = parseInt(this.cookieService.get('languageId'))
     if(!this.language.languageId)
-      this.language.languageId = 1
+      this.language.languageId = this.DEFAULT_LANGUAGE_ID
   }
 
   getLanguages() {

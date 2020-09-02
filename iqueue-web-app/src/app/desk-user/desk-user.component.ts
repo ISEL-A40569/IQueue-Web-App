@@ -39,6 +39,7 @@ export class DeskUserComponent implements OnInit {
             operatorId: this.deskUser.deskId
           }).subscribe(text =>
             alert(text)
-          )        })
+          )        
+        })
   }
 }
