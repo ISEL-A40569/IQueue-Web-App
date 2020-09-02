@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from './services/http-service'
 import { TranslateService } from '@ngx-translate/core'
+import { CookieService } from 'ngx-cookie-service'
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,14 @@ export class AppComponent {
 
   constructor(private router: Router,
     private httpService: HttpService,
-    private translateService: TranslateService) {
-      translateService.setDefaultLang('en')
-      translateService.use('pt')
-     }
+    private translateService: TranslateService,
+    private cookieService: CookieService) {
+  }
+
+  ngOnInit(): void {
+    this.translateService.use('en')
+    this.getLanguage()
+  }
 
   onLogin() {
     this.httpService
@@ -37,7 +42,7 @@ export class AppComponent {
           this.httpService
             .get(`http://localhost:8080/api/iqueue/operator/user/${this.userId}`)
             // .get(`https://localhost:8443/api/iqueue/operator/user/${this.userId}`)
-            .subscribe(response => {              
+            .subscribe(response => {
               this.operatorId = response[0]['operatorId']
               localStorage.setItem('operatorId', this.operatorId.toString())
             })
@@ -53,20 +58,33 @@ export class AppComponent {
               localStorage.setItem('deskId', this.deskId.toString())
             })
         }
+        
+        this.translateService.get('WELCOME_USER').subscribe(text =>
+          alert(`${text} ${response['userName']}`)
+        )
 
-        alert(`Welcome ${response['userName']}`)
         this.loggedIn = true
 
       }, error => {
         console.log(error)
         switch (error['status']) {
-          case 401: alert('Wrong credentials!')
+
+          case 401:
+            this.translateService.get('WRONG_CREDENTIALS').subscribe(text =>
+              alert(text)
+            )
             break
 
-          case 404: alert('User does not exist!')
+          case 404:
+            this.translateService.get('USER_DONT_EXIST').subscribe(text =>
+              alert(text)
+            )
             break
 
-          case 500: alert('Error logging in!')
+          case 500:
+            this.translateService.get('LOGIN_ERROR').subscribe(text =>
+              alert(text)
+            )
             break
         }
       })
@@ -76,6 +94,13 @@ export class AppComponent {
     localStorage.clear()
     this.loggedIn = false
     // this.router.navigate(['/'])
+  }
+
+  getLanguage() {
+    const language = this.cookieService.get('languageDescription')
+    if (language != undefined) {
+      this.translateService.use(language)
+    }
   }
 
 }

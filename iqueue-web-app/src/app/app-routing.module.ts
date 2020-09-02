@@ -21,6 +21,7 @@ import { DeskUserComponent } from './desk-user/desk-user.component'
 import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component'
 import { ServiceDeskComponent } from './service-desk/service-desk.component'
 import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component'
+import { LanguageComponent } from './language/language.component'
 
 const routes: Routes = [
   { path: 'servicedesk', component: ServiceDeskComponent },
@@ -48,7 +49,8 @@ const routes: Routes = [
   { path: 'beacon', component: BeaconComponent },
   { path: 'beacons', component: BeaconsComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-  { path: 'log', component: LogEntryComponent }
+  { path: 'log', component: LogEntryComponent },
+  { path: 'language', component: LanguageComponent }
 ]
 
 @NgModule({

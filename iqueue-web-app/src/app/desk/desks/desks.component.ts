@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Desk } from '../../model/desk'
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-desks',
@@ -13,7 +14,8 @@ export class DesksComponent implements OnInit {
   serviceQueueId: number
 
   constructor(private httpService: HttpService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.serviceQueueId = this.route.snapshot.params['serviceQueueId']

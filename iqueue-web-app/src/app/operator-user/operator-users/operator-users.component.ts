@@ -3,6 +3,7 @@ import { OperatorUser } from 'src/app/model/operator-user';
 import { User } from 'src/app/model/user';
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-operator-users',
@@ -16,7 +17,8 @@ export class OperatorUsersComponent implements OnInit {
   users: User[] = []
 
   constructor(private httpService: HttpService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.operatorId = this.route.snapshot.params['operatorId']
@@ -27,7 +29,7 @@ export class OperatorUsersComponent implements OnInit {
   getOperatorUsers() {
     this.fetching = true
     this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operatorId}/user`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/user`)
+      // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/user`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorUsers.push(responseData[entry])
@@ -41,11 +43,11 @@ export class OperatorUsersComponent implements OnInit {
   getUsers() {
     this.fetching = true
     this.httpService.get('http://localhost:8080/api/iqueue/user')
-    // this.httpService.get('https://localhost:8443/api/iqueue/user')
+      // this.httpService.get('https://localhost:8443/api/iqueue/user')
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
-          if (user.userProfileId == 2 && !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId ))
+          if (user.userProfileId == 2 && !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId))
             this.users.push(user)
         }
       })
@@ -57,13 +59,23 @@ export class OperatorUsersComponent implements OnInit {
     operatorUser.userId = this.userId
 
     this.httpService.post('http://localhost:8080/api/iqueue/operator/user', operatorUser)
-    // this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
-    .subscribe(responseData => {
-        alert(`User ${this.userId} successfully added to operator ${this.operatorId}!`)
+      // this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
+      .subscribe(responseData => {
+        this.translateService.get('ADD_USER_OPERATOR_SUCCESS', {
+          userId: this.userId,
+          operatorId: this.operatorId
+        }).subscribe(text =>
+          alert(text)
+        )
         this.operatorUsers.push(operatorUser)
       },
         error => {
-          alert(`Error adding user ${this.userId} to operator ${this.operatorId}!`)
+          this.translateService.get('ADD_USER_OPERATOR_ERROR', {
+            userId: this.userId,
+            operatorId: this.operatorId
+          }).subscribe(text =>
+            alert(text)
+          )
         })
   }
 }

@@ -3,6 +3,7 @@ import { DeskUser } from 'src/app/model/desk-user';
 import { User } from 'src/app/model/user';
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-desk-users',
@@ -16,7 +17,8 @@ export class DeskUsersComponent implements OnInit {
   users: User[] = []
 
   constructor(private httpService: HttpService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.deskId = this.route.snapshot.params['deskId']
@@ -27,7 +29,7 @@ export class DeskUsersComponent implements OnInit {
   getDeskUsers() {
     this.fetching = true
     this.httpService.get(`http://localhost:8080/api/iqueue/desk/${this.deskId}/user`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/desk/${this.deskId}/user`)
+      // this.httpService.get(`https://localhost:8443/api/iqueue/desk/${this.deskId}/user`)
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.deskUsers.push(responseData[entry])
@@ -41,11 +43,11 @@ export class DeskUsersComponent implements OnInit {
   getUsers() {
     this.fetching = true
     this.httpService.get('http://localhost:8080/api/iqueue/user')
-    // this.httpService.get('https://localhost:8443/api/iqueue/user')
-    .subscribe(responseData => {
+      // this.httpService.get('https://localhost:8443/api/iqueue/user')
+      .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
-          if (user.userProfileId == 3 && !this.deskUsers.some(deskUser => deskUser.userId == user.userId ))
+          if (user.userProfileId == 3 && !this.deskUsers.some(deskUser => deskUser.userId == user.userId))
             this.users.push(user)
         }
       })
@@ -57,13 +59,23 @@ export class DeskUsersComponent implements OnInit {
     deskUser.userId = this.userId
 
     this.httpService.post('http://localhost:8080/api/iqueue/desk/user', deskUser)
-    // this.httpService.post('https://localhost:8443/api/iqueue/desk/user', deskUser)
-    .subscribe(responseData => {
-        alert(`User ${this.userId} successfully added to desk ${this.deskId}!`)
+      // this.httpService.post('https://localhost:8443/api/iqueue/desk/user', deskUser)
+      .subscribe(responseData => {
+        this.translateService.get('ADD_USER_DESK_SUCCESS', {
+          userId: this.userId,
+          operatorId: this.deskId
+        }).subscribe(text =>
+          alert(text)
+        )
         this.deskUsers.push(deskUser)
       },
         error => {
-          alert(`Error adding user ${this.userId} to desk ${this.deskId}!`)
+          this.translateService.get('ADD_USER_DESK_ERROR', {
+            userId: this.userId,
+            operatorId: this.deskId
+          }).subscribe(text =>
+            alert(text)
+          )
         })
   }
 

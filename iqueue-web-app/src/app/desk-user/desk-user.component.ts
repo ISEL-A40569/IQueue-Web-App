@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http-service'
 import { DeskUser } from 'src/app/model/desk-user';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-desk-user',
@@ -12,7 +13,8 @@ export class DeskUserComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.deskUser.deskId = this.route.snapshot.params['deskId']
@@ -23,11 +25,20 @@ export class DeskUserComponent implements OnInit {
     this.httpService.delete(`http://localhost:8080/api/iqueue/desk/${this.deskUser.deskId}/user/${this.deskUser.userId}`)
     // this.httpService.delete(`https://localhost:8443/api/iqueue/desk/${this.deskUser.deskId}/user/${this.deskUser.userId}`)
     .subscribe(responseData => {
-        alert(`User ${this.deskUser.userId} successfully removed from desk ${this.deskUser.deskId} !`)
+      this.translateService.get('REMOVE_USER_DESK_SUCCESS', {
+        userId: this.deskUser.userId,
+        operatorId: this.deskUser.deskId
+      }).subscribe(text =>
+        alert(text)
+      )
         this.router.navigate([`/desk/${this.deskUser.deskId}/user`])
       },
         error => {
-          alert(`Error removing user ${this.deskUser.userId} from desk ${this.deskUser.deskId}!`)
-        })
+          this.translateService.get('REMOVE_USER_DESK_ERROR', {
+            userId: this.deskUser.userId,
+            operatorId: this.deskUser.deskId
+          }).subscribe(text =>
+            alert(text)
+          )        })
   }
 }
