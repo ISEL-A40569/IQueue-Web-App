@@ -2,7 +2,7 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <p *ngIf="fetching">{{'LOADING' | translate}}</p>
-        <p *ngIf="deskUsers.length == 0 && !fetching">{{'NO_DESK'}} {{ deskId }}.</p>
+        <p *ngIf="deskUsers.length == 0 && !fetching">{{'NO_DESK' | translate}} {{ deskId }}.</p>
         <table class="table table-striped" *ngIf="deskUsers.length > 0">
             <tr>
                 <th>{{'USER_ID' | translate}}</th>

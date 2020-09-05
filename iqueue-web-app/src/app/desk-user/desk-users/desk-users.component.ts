@@ -65,7 +65,7 @@ export class DeskUsersComponent implements OnInit {
       .subscribe(responseData => {
         this.translateService.get('ADD_USER_DESK_SUCCESS', {
           userId: this.userId,
-          operatorId: this.deskId
+          deskId: this.deskId
         }).subscribe(text =>
           alert(text)
         )
@@ -74,7 +74,7 @@ export class DeskUsersComponent implements OnInit {
         error => {
           this.translateService.get('ADD_USER_DESK_ERROR', {
             userId: this.userId,
-            operatorId: this.deskId
+            deskId: this.deskId
           }).subscribe(text =>
             alert(text)
           )

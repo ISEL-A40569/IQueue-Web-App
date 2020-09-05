@@ -26,9 +26,6 @@ export class ResetPasswordComponent implements OnInit {
       .update(this.uriBuilderService.getUserCredentialsUri(this.userid),
         { userId: this.userid, password: this.password })
       .subscribe(response => {
-        this.translateService.get('SERVICEQUEUE_CREATE_ERROR').subscribe(text =>
-          alert(text)
-        )
         this.translateService.get('CHANGE_PASSWORD_SUCCESS').subscribe(text =>
           alert(text)
         )

@@ -53,7 +53,7 @@ export class AppComponent {
 
         if (this.userProfileId == 3) {
           this.httpService
-            .get(this.uriBuilderService.getDeskUserUri(this.userId))
+            .get(this.uriBuilderService.getUserDeskUri(this.userId))
             .subscribe(response => {
               console.log(response)
               this.deskId = response[0]['deskId']

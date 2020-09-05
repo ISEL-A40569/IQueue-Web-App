@@ -21,7 +21,7 @@ export class LogEntryComponent implements OnInit {
 
   getLogEntries() {
     this.fetching = true
-    this.httpService.get(this.uriBuilderService.getLoginUri())
+    this.httpService.get(this.uriBuilderService.getLogUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.logEntries.push(responseData[entry])

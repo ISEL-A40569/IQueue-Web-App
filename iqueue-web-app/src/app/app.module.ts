@@ -33,6 +33,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { HttpClient } from '@angular/common/http';
 import { LanguageComponent } from './language/language.component'
 
+import { UriBuilderService } from './services/uri-builder-service'
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
 }
@@ -76,7 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [HttpService],
+  providers: [HttpService,
+    UriBuilderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

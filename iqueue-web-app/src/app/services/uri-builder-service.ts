@@ -1,11 +1,14 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class UriBuilderService {
-    readonly protocol = 'https://'
-    readonly host = 'localhost'
-    readonly port = ':8443'
+    readonly protocol = 'https'
+    readonly host = '192.168.1.245'
+    readonly port = '8443'
     readonly commonPath = '/api/iqueue/'
 
     private buildUri(variablePath: string): string {
-        return `${this.protocol}${this.host}${this.port}${this.commonPath}${variablePath}`
+        return `${this.protocol}://${this.host}:${this.port}${this.commonPath}${variablePath}`
     }
 
     public getLoginUri(): string {

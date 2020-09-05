@@ -29,7 +29,7 @@ export class DeskUserComponent implements OnInit {
     .subscribe(responseData => {
       this.translateService.get('REMOVE_USER_DESK_SUCCESS', {
         userId: this.deskUser.userId,
-        operatorId: this.deskUser.deskId
+        deskId: this.deskUser.deskId
       }).subscribe(text =>
         alert(text)
       )
@@ -38,7 +38,7 @@ export class DeskUserComponent implements OnInit {
         error => {
           this.translateService.get('REMOVE_USER_DESK_ERROR', {
             userId: this.deskUser.userId,
-            operatorId: this.deskUser.deskId
+            deskId: this.deskUser.deskId
           }).subscribe(text =>
             alert(text)
           )        

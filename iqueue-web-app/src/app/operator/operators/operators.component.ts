@@ -20,7 +20,7 @@ export class OperatorsComponent implements OnInit {
 
   getOperators() {
     this.fetching = true
-    this.httpService.get(this.uriBuilderService.getOperatorsBeaconsUri())
+    this.httpService.get(this.uriBuilderService.getOperatorsUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operators.push(responseData[entry])

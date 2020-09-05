@@ -44,7 +44,7 @@ export class DeskComponent implements OnInit {
       .post(this.uriBuilderService.getDesksUri(), this.desk)
       .subscribe(responseData => {
         this.desk.deskId = responseData['deskId']
-        this.translateService.get('DESK_CREATE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
+        this.translateService.get('DESK_CREATE_SUCCESS', { deskId: this.desk.deskId }).subscribe(text =>
           alert(text)
         )
         this.createMode = false
@@ -61,7 +61,7 @@ export class DeskComponent implements OnInit {
       .update(this.uriBuilderService.getDeskUri(this.desk.deskId),
         this.desk)
       .subscribe(responseData => {
-        this.translateService.get('DESK_UPDATE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
+        this.translateService.get('DESK_UPDATE_SUCCESS', { deskId: this.desk.deskId }).subscribe(text =>
           alert(text)
         )
       },
@@ -76,7 +76,7 @@ export class DeskComponent implements OnInit {
     this.httpService
       .delete(this.uriBuilderService.getDeskUri(this.desk.deskId))
       .subscribe(responseData => {
-        this.translateService.get('DESK_DELETE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
+        this.translateService.get('DESK_DELETE_SUCCESS', { deskId: this.desk.deskId }).subscribe(text =>
           alert(text)
         )
         this.router.navigate([`/desks`])
@@ -90,8 +90,7 @@ export class DeskComponent implements OnInit {
 
   getServiceQueues() {
     const operatorId = localStorage.getItem('operatorId')
-    this.httpService.get(`http://localhost:8080/api/iqueue/servicequeue?operatorId=${operatorId}`)
-      // this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue?operatorId=${operatorId}`)
+    this.httpService.get(this.uriBuilderService.getOperatorServiceQueuesUri(operatorId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueues.push(responseData[entry])

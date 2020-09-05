@@ -41,7 +41,7 @@ export class OperatorComponent implements OnInit {
     this.httpService.post(this.uriBuilderService.getOperatorsUri(),
       this.operator).subscribe(responseData => {
         this.operator.operatorId = responseData['operatorId']
-        this.translateService.get('OPERATOR_CREATE_SUCCESS', { userId: this.operator.operatorId }).subscribe(text =>
+        this.translateService.get('OPERATOR_CREATE_SUCCESS', { operatorId: this.operator.operatorId }).subscribe(text =>
           alert(text)
         )
         this.createMode = false
@@ -57,7 +57,7 @@ export class OperatorComponent implements OnInit {
     this.httpService.update(this.uriBuilderService.getOperatorUri(this.operator.operatorId),
       this.operator)
       .subscribe(responseData => {
-        this.translateService.get('OPERATOR_UPDATE_SUCCESS', { userId: this.operator.operatorId }).subscribe(text =>
+        this.translateService.get('OPERATOR_UPDATE_SUCCESS', { operatorId: this.operator.operatorId }).subscribe(text =>
           alert(text)
         )
       },
@@ -71,7 +71,7 @@ export class OperatorComponent implements OnInit {
   onDeleteOperator() {
     this.httpService.delete(this.uriBuilderService.getOperatorUri(this.operator.operatorId))
       .subscribe(responseData => {
-        this.translateService.get('OPERATOR_DELETE_SUCCESS', { userId: this.operator.operatorId }).subscribe(text =>
+        this.translateService.get('OPERATOR_DELETE_SUCCESS', { operatorId: this.operator.operatorId }).subscribe(text =>
           alert(text)
         )
         this.router.navigate(['/operators'])

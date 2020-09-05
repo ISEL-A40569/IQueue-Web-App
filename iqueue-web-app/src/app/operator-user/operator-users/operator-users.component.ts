@@ -45,7 +45,7 @@ export class OperatorUsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get(this.uriBuilderService.getOperatorsUsersUri())
+    this.httpService.get(this.uriBuilderService.getUsersUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
