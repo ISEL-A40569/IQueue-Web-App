@@ -3,6 +3,7 @@ import { Beacon } from '../model/beacon'
 import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-beacon',
@@ -15,7 +16,8 @@ export class BeaconComponent implements OnInit {
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['beaconId']) {
@@ -26,8 +28,7 @@ export class BeaconComponent implements OnInit {
   }
 
   getBeacon() {
-    this.httpService.get(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`)
-      // this.httpService.get(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`)
+    this.httpService.get(this.uriBuilderService.getBeaconUri(this.beacon.beaconId))
       .subscribe(responseData => {
         this.beacon.beaconMacAddress = responseData['beaconMacAddress']
         this.beacon.namespaceId = responseData['namespaceId']
@@ -38,8 +39,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onCreateBeacon() {
-    this.httpService.post('http://localhost:8080/api/iqueue/beacon', this.beacon).subscribe(responseData => {
-      // this.httpService.post('https://localhost:8443/api/iqueue/beacon', this.beacon).subscribe(responseData => {
+    this.httpService.post(this.uriBuilderService.getBeaconsUri(), this.beacon).subscribe(responseData => {
       this.beacon.beaconId = responseData['beaconId']
       this.translateService.get('BEACON_CREATE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
         alert(text)
@@ -54,8 +54,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onUpdateBeacon() {
-    this.httpService.update(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`,
-      // this.httpService.update(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`,
+    this.httpService.update(this.uriBuilderService.getBeaconUri(this.beacon.beaconId),
       this.beacon)
       .subscribe(responseData => {
         this.translateService.get('BEACON_UPDATE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
@@ -70,8 +69,7 @@ export class BeaconComponent implements OnInit {
   }
 
   onDeleteBeacon() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/beacon/${this.beacon.beaconId}`)
-      // this.httpService.delete(`https://localhost:8443/api/iqueue/beacon/${this.beacon.beaconId}`)
+    this.httpService.delete(this.uriBuilderService.getBeaconUri(this.beacon.beaconId))
       .subscribe(responseData => {
         this.translateService.get('BEACON_DELETE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
           alert(text)

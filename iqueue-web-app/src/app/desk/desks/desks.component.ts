@@ -3,6 +3,7 @@ import { Desk } from '../../model/desk'
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-desks',
@@ -15,7 +16,8 @@ export class DesksComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.serviceQueueId = this.route.snapshot.params['serviceQueueId']
@@ -25,11 +27,9 @@ export class DesksComponent implements OnInit {
   getDesks() {
     let uri: string
     if (this.serviceQueueId) {
-      uri = `http://localhost:8080/api/iqueue/desk?serviceQueueId=${this.serviceQueueId}`
-      // uri = `https://localhost:8443/api/iqueue/desk?serviceQueueId=${this.serviceQueueId}`
+      uri = this.uriBuilderService.getServiceQueueDesks(this.serviceQueueId)
     } else {
-      uri = `http://localhost:8080/api/iqueue/desk`
-      // uri = `https://localhost:8443/api/iqueue/desk`
+      uri = this.uriBuilderService.getDesksUri()
     }
 
     this.fetching = true

@@ -3,6 +3,7 @@ import { ServiceQueueStatistics } from '../model/service-queue-statistics'
 import { AttendanceClassification } from '../model/attendance-classification'
 import { HttpService } from '../services/http-service'
 import { ActivatedRoute } from '@angular/router'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-service-queue-report',
@@ -14,7 +15,8 @@ export class ServiceQueueReportComponent implements OnInit {
   attendanceClassifications: AttendanceClassification[] = []
   
   constructor(private httpService: HttpService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.serviceQueueId = this.route.snapshot.params['serviceQueueId']
@@ -24,8 +26,7 @@ export class ServiceQueueReportComponent implements OnInit {
 
   getServiceQueueStatistic() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/servicequeue/${this.serviceQueueId}/statistics`)
-      // .get(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueueId}/statistics`)
+      .get(this.uriBuilderService.getServiceQueueStatisticsUri(this.serviceQueueId))
       .subscribe(responseData => {
         this.serviceQueueStatistics.attendanceCount = responseData['attendanceCount']
         this.serviceQueueStatistics.averageWaitingTime = responseData['averageWaitingTime']
@@ -35,18 +36,16 @@ export class ServiceQueueReportComponent implements OnInit {
       })
   }
 
-  // TODO: THIS IS HORRIBLE, MUST RE-THINK AND RE-WRITE THIS SHIT!!!
+  // TODO: CAN RE-THINK AND RE-WRITE THIS !?
   getAttendanceClassifications() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
-      // .get(`https://localhost:8443/api/iqueue/attendance?serviceQueueId=${this.serviceQueueId}`)
+      .get(this.uriBuilderService.getServiceQueueAttendancesUri(this.serviceQueueId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           const attendanceId = responseData[entry]['attendanceId']
 
           this.httpService
-            .get(`http://localhost:8080/api/iqueue/attendance/${attendanceId}/classification`)
-            // .get(`https://localhost:8443/api/iqueue/attendance/${attendanceId}/classification`)
+            .get(this.uriBuilderService.getAttendanceClassificationUri(attendanceId))
             .subscribe(responseData => {
               let attendanceClassification: AttendanceClassification = new AttendanceClassification()
               attendanceClassification.classificationCreationDateTime = responseData['classificationCreationDateTime']

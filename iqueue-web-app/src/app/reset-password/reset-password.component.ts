@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http-service'
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-reset-password',
@@ -11,7 +12,8 @@ export class ResetPasswordComponent implements OnInit {
   password: string
 
   constructor(private httpService: HttpService,
-    private translateService: TranslateService) {
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) {
 
   }
 
@@ -21,8 +23,7 @@ export class ResetPasswordComponent implements OnInit {
 
   onChangePassword() {
     this.httpService
-      .update(`http://localhost:8080/api/iqueue/user/${this.userid}/credentials`,
-        // .update(`https://localhost:8443/api/iqueue/user/${this.userid}/credentials`, 
+      .update(this.uriBuilderService.getUserCredentialsUri(this.userid),
         { userId: this.userid, password: this.password })
       .subscribe(response => {
         this.translateService.get('SERVICEQUEUE_CREATE_ERROR').subscribe(text =>

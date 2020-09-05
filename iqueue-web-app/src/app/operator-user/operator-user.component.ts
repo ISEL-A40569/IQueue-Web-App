@@ -3,6 +3,7 @@ import { HttpService } from '../services/http-service'
 import { OperatorUser } from 'src/app/model/operator-user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-operator-user',
@@ -14,7 +15,8 @@ export class OperatorUserComponent implements OnInit {
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.operatorUser.operatorId = this.route.snapshot.params['operatorId']
@@ -22,8 +24,8 @@ export class OperatorUserComponent implements OnInit {
   }
 
   onRemoveUser() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/operator/${this.operatorUser.operatorId}/user/${this.operatorUser.userId}`)
-      // this.httpService.delete(`https://localhost:8443/api/iqueue/operator/${this.operatorUser.operatorId}/user/${this.operatorUser.userId}`)
+    this.httpService.delete(this.uriBuilderService.getOperatorUserUri(this.operatorUser.operatorId,
+      this.operatorUser.userId))
       .subscribe(responseData => {
         this.translateService.get('REMOVE_USER_OPERATOR_SUCCESS', {
           userId: this.operatorUser.userId,

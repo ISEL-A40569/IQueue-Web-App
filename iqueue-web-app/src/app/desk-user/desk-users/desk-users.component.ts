@@ -4,6 +4,7 @@ import { User } from 'src/app/model/user';
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-desk-users',
@@ -20,7 +21,8 @@ export class DeskUsersComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.deskId = this.route.snapshot.params['deskId']
@@ -30,8 +32,7 @@ export class DeskUsersComponent implements OnInit {
 
   getDeskUsers() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/desk/${this.deskId}/user`)
-      // this.httpService.get(`https://localhost:8443/api/iqueue/desk/${this.deskId}/user`)
+    this.httpService.get(this.uriBuilderService.getDeskUsersUri(this.deskId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.deskUsers.push(responseData[entry])
@@ -44,8 +45,7 @@ export class DeskUsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/user')
-      // this.httpService.get('https://localhost:8443/api/iqueue/user')
+    this.httpService.get(this.uriBuilderService.getUsersUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
@@ -61,8 +61,7 @@ export class DeskUsersComponent implements OnInit {
     deskUser.deskId = this.deskId
     deskUser.userId = this.userId
 
-    this.httpService.post('http://localhost:8080/api/iqueue/desk/user', deskUser)
-      // this.httpService.post('https://localhost:8443/api/iqueue/desk/user', deskUser)
+    this.httpService.post(this.uriBuilderService.getDesksUsersUri(), deskUser)
       .subscribe(responseData => {
         this.translateService.get('ADD_USER_DESK_SUCCESS', {
           userId: this.userId,

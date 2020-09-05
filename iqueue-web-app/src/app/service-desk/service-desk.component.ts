@@ -3,6 +3,7 @@ import { Attendance } from '../model/attendance'
 import { AttendanceTicket } from '../model/attendance-ticket'
 import { HttpService } from '../services/http-service'
 import { DatePipe } from '@angular/common'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-service-desk',
@@ -20,7 +21,8 @@ export class ServiceDeskComponent implements OnInit {
   readonly ATTENDANCE_QUIT_STATUS_ID = 4
 
   constructor(private httpService: HttpService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {    
     this.getWaitingCount()
@@ -28,8 +30,7 @@ export class ServiceDeskComponent implements OnInit {
 
   getWaitingCount() {
     this.deskId = localStorage.getItem('deskId')
-    this.httpService.get(`http://localhost:8080/api/iqueue/servicequeue/waitingcount/${this.deskId}`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue/waitingcount/${this.deskId}`)
+    this.httpService.get(this.uriBuilderService.getServiceQueueWaitingCountUri(this.deskId))
       .subscribe(responseData => {
         this.waitingCount = responseData['waitingCount']
         this.getWaitingCount()
@@ -37,9 +38,7 @@ export class ServiceDeskComponent implements OnInit {
   }
 
   onCallNext() {
-    console.log(this.datePipe.transform(new Date(Date.now()), 'yyyy-MM-dd HH:mm:ss'))
-    this.httpService.get(`http://localhost:8080/api/iqueue/attendance/next/${this.deskId}`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/attendance/next/${this.deskId}`)
+    this.httpService.get(this.uriBuilderService.getNextAttendanceUri(this.deskId))
       .subscribe(responseData => {
         this.attendance.attendanceId = responseData['attendanceId']
         this.attendance.serviceQueueId = responseData['serviceQueueId']
@@ -57,8 +56,7 @@ export class ServiceDeskComponent implements OnInit {
   }
 
   updateAttendance() {    
-    this.httpService.update(`http://localhost:8080/api/iqueue/attendance/${this.attendance.attendanceId}`,
-    // this.httpService.update(`https://localhost:8443/api/iqueue/attendance/${this.attendance.attendanceId}`,
+    this.httpService.update(this.uriBuilderService.getAttendanceUri(this.attendance.attendanceId),
       this.attendance)
       .subscribe(responseData => {
         console.log(this.attendance)
@@ -66,8 +64,7 @@ export class ServiceDeskComponent implements OnInit {
   }
 
   getAttendanceTicket() {
-    this.httpService.get(`http://localhost:8080/api/iqueue/attendance/${this.attendance.attendanceId}/ticket`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/attendance/${this.attendance.attendanceId}/ticket`)
+    this.httpService.get(this.uriBuilderService.getAttendanceTicketUri(this.attendance.attendanceId))
       .subscribe(responseData => {
         this.attendanceTicket.attendanceId = responseData['attendanceId']
         this.attendanceTicket.ticketNumber = responseData['ticketNumber']
@@ -91,7 +88,7 @@ export class ServiceDeskComponent implements OnInit {
     this.getWaitingCount()
   }
 
-  getCurrentDateTime() {
+  private getCurrentDateTime() {
     return this.datePipe.transform(new Date(Date.now()), 'yyyy-MM-ddTHH:mm:ss')
   }
 

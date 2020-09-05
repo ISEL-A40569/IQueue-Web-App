@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Operator } from 'src/app/model/operator';
 import { HttpService } from '../../services/http-service'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-operators',
@@ -10,7 +11,8 @@ export class OperatorsComponent implements OnInit {
   operators: Operator[] = []
   fetching: boolean = false
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.getOperators()
@@ -18,8 +20,7 @@ export class OperatorsComponent implements OnInit {
 
   getOperators() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/operator')
-    // this.httpService.get('https://localhost:8443/api/iqueue/operator')
+    this.httpService.get(this.uriBuilderService.getOperatorsBeaconsUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operators.push(responseData[entry])

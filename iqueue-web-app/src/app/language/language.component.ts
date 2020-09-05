@@ -3,6 +3,7 @@ import { Language } from '../model/language';
 import { HttpService } from '../services/http-service'
 import { TranslateService } from '@ngx-translate/core'
 import { CookieService } from 'ngx-cookie-service'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-language',
@@ -15,7 +16,8 @@ export class LanguageComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private translateService: TranslateService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private uriBuilderService: UriBuilderService) { }
 
     readonly DEFAULT_LANGUAGE_ID = 1
 
@@ -28,8 +30,7 @@ export class LanguageComponent implements OnInit {
 
   getLanguages() {
     this.httpService
-    .get(`http://localhost:8080/api/iqueue/language`)
-    // .get(`https://localhost:8443/api/iqueue/language`)
+    .get(this.uriBuilderService.getLanguageUri())
     .subscribe(response => {              
       for (const entry in response) {
         this.languages.push(response[entry])

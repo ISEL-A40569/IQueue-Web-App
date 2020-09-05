@@ -4,6 +4,7 @@ import { User } from 'src/app/model/user';
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-operator-users',
@@ -20,7 +21,8 @@ export class OperatorUsersComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.operatorId = this.route.snapshot.params['operatorId']
@@ -30,8 +32,7 @@ export class OperatorUsersComponent implements OnInit {
 
   getOperatorUsers() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operatorId}/user`)
-      // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/user`)
+    this.httpService.get(this.uriBuilderService.getOperatorUsersUri(this.operatorId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorUsers.push(responseData[entry])
@@ -44,8 +45,7 @@ export class OperatorUsersComponent implements OnInit {
 
   getUsers() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/user')
-      // this.httpService.get('https://localhost:8443/api/iqueue/user')
+    this.httpService.get(this.uriBuilderService.getOperatorsUsersUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
@@ -61,7 +61,7 @@ export class OperatorUsersComponent implements OnInit {
     operatorUser.operatorId = this.operatorId
     operatorUser.userId = this.userId
 
-    this.httpService.post('http://localhost:8080/api/iqueue/operator/user', operatorUser)
+    this.httpService.post(this.uriBuilderService.getOperatorsUsersUri(), operatorUser)
       // this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
       .subscribe(responseData => {
         this.translateService.get('ADD_USER_OPERATOR_SUCCESS', {

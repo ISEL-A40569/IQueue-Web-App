@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { UserProfile } from '../model/user-profile'
 import { CookieService } from 'ngx-cookie-service'
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,8 @@ export class UserComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cookieService: CookieService,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['userId']) {
@@ -39,8 +41,7 @@ export class UserComponent implements OnInit {
 
   getUser() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/user/${this.user.userId}`)
-      // .get(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
+      .get(this.uriBuilderService.getUserUri(this.user.userId.toString()))
       .subscribe(responseData => {
         this.user.userName = responseData['userName']
         this.user.email = responseData['email']
@@ -52,8 +53,7 @@ export class UserComponent implements OnInit {
 
   onCreateUser() {
     this.httpService
-      .post(`http://localhost:8080/api/iqueue/user`, this.user)
-      // .post(`https://localhost:8443/api/iqueue/user`, this.user)
+      .post(this.uriBuilderService.getUsersUri(), this.user)
       .subscribe(responseData => {
         this.user.userId = responseData['userId']
 
@@ -72,8 +72,7 @@ export class UserComponent implements OnInit {
 
   onUpdateUser() {
     this.httpService
-      .update(`http://localhost:8080/api/iqueue/user/${this.user.userId}`,
-        // .update(`https://localhost:8443/api/iqueue/user/${this.user.userId}`,
+      .update(this.uriBuilderService.getUserUri(this.user.userId.toString()),
         this.user)
       .subscribe(responseData => {
         this.translateService.get('USER_UPDATE_SUCCESS', {userId : this.user.userId}).subscribe(text =>
@@ -88,8 +87,7 @@ export class UserComponent implements OnInit {
   }
 
   onDeleteUser() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/user/${this.user.userId}`)
-      // this.httpService.delete(`https://localhost:8443/api/iqueue/user/${this.user.userId}`)
+    this.httpService.delete(this.uriBuilderService.getUserUri(this.user.userId.toString()))
       .subscribe(responseData => {
         this.translateService.get('USER_DELETE_SUCCESS', {userId : this.user.userId}).subscribe(text =>
           alert(text)
@@ -105,8 +103,7 @@ export class UserComponent implements OnInit {
 
   getUserProfiles() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/userprofile?languageId=${this.languageId}`)
-      // .get(`https://localhost:8443/api/iqueue/userprofile?languageId=${this.languageId}`)
+      .get(this.uriBuilderService.getUserProfileUri(this.languageId))
       .subscribe(responseData => {
         for (let entry in responseData) {
           this.userProfiles.push(responseData[entry])

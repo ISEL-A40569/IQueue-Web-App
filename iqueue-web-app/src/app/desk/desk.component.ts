@@ -4,6 +4,7 @@ import { ServiceQueue } from '../model/service-queue'
 import { HttpService } from '../services/http-service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-desk',
@@ -17,7 +18,8 @@ export class DeskComponent implements OnInit {
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.params['deskId']) {
@@ -30,8 +32,7 @@ export class DeskComponent implements OnInit {
 
   getDesk() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`)
-      // .get(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
+      .get(this.uriBuilderService.getDeskUri(this.desk.deskId))
       .subscribe(responseData => {
         this.desk.serviceQueueId = responseData['serviceQueueId']
         this.desk.deskDescription = responseData['deskDescription']
@@ -40,8 +41,7 @@ export class DeskComponent implements OnInit {
 
   onCreateDesk() {
     this.httpService
-      .post(`http://localhost:8080/api/iqueue/desk`, this.desk)
-      // .post(`https://localhost:8443/api/iqueue/desk`, this.desk)
+      .post(this.uriBuilderService.getDesksUri(), this.desk)
       .subscribe(responseData => {
         this.desk.deskId = responseData['deskId']
         this.translateService.get('DESK_CREATE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
@@ -58,8 +58,7 @@ export class DeskComponent implements OnInit {
 
   onUpdateDesk() {
     this.httpService
-      .update(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`,
-        // .update(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`,
+      .update(this.uriBuilderService.getDeskUri(this.desk.deskId),
         this.desk)
       .subscribe(responseData => {
         this.translateService.get('DESK_UPDATE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
@@ -75,8 +74,7 @@ export class DeskComponent implements OnInit {
 
   onDeleteDesk() {
     this.httpService
-      .delete(`http://localhost:8080/api/iqueue/desk/${this.desk.deskId}`)
-      // .delete(`https://localhost:8443/api/iqueue/desk/${this.desk.deskId}`)
+      .delete(this.uriBuilderService.getDeskUri(this.desk.deskId))
       .subscribe(responseData => {
         this.translateService.get('DESK_DELETE_SUCCESS', { userId: this.desk.deskId }).subscribe(text =>
           alert(text)

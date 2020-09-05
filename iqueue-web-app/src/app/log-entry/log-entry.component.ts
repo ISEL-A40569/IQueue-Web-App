@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogEntry } from '../model/log-entry'
 import { HttpService } from '../services/http-service'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-log-entry',
@@ -11,7 +12,8 @@ export class LogEntryComponent implements OnInit {
   fetching: boolean
   logEntries: LogEntry[] = []
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.getLogEntries()
@@ -19,8 +21,7 @@ export class LogEntryComponent implements OnInit {
 
   getLogEntries() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/log`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/log`)
+    this.httpService.get(this.uriBuilderService.getLoginUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.logEntries.push(responseData[entry])

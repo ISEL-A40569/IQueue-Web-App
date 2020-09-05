@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceQueue } from '../../model/service-queue'
 import { HttpService } from '../../services/http-service'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-service-queues',
@@ -9,9 +10,10 @@ import { HttpService } from '../../services/http-service'
 export class ServiceQueuesComponent implements OnInit {
   serviceQueues: ServiceQueue[] = []
   fetching: boolean = false
-  operatorId: String
+  operatorId: string
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.operatorId = localStorage.getItem('operatorId')
@@ -20,8 +22,7 @@ export class ServiceQueuesComponent implements OnInit {
 
   getServiceQueues() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/servicequeue?operatorId=${this.operatorId}`)
-    // this.httpService.get(`https://localhost:8443/api/iqueue/servicequeue?operatorId=${this.operatorId}`)
+    this.httpService.get(this.uriBuilderService.getOperatorServiceQueuesUri(this.operatorId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueues.push(responseData[entry])

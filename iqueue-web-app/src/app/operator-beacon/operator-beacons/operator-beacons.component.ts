@@ -4,6 +4,7 @@ import { Beacon } from 'src/app/model/beacon';
 import { HttpService } from '../../services/http-service'
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../../services/uri-builder-service'
 
 @Component({
   selector: 'app-operator-beacons',
@@ -19,7 +20,8 @@ export class OperatorBeaconsComponent implements OnInit {
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
     this.operatorId = this.route.snapshot.params['operatorId']
@@ -29,8 +31,7 @@ export class OperatorBeaconsComponent implements OnInit {
 
   getOperatorBeacons() {
     this.fetching = true
-    this.httpService.get(`http://localhost:8080/api/iqueue/operator/${this.operatorId}/beacon`)
-      // this.httpService.get(`https://localhost:8443/api/iqueue/operator/${this.operatorId}/beacon`)
+    this.httpService.get(this.uriBuilderService.getOperatorBeaconsUri(this.operatorId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorBeacons.push(responseData[entry])
@@ -43,7 +44,7 @@ export class OperatorBeaconsComponent implements OnInit {
 
   getBeacons() {
     this.fetching = true
-    this.httpService.get('http://localhost:8080/api/iqueue/beacon')
+    this.httpService.get(this.uriBuilderService.getOperatorsBeaconsUri())
       // this.httpService.get('https://localhost:8443/api/iqueue/beacon')
       .subscribe(responseData => {
         for (const entry in responseData) {
@@ -59,7 +60,7 @@ export class OperatorBeaconsComponent implements OnInit {
     operatorBeacon.operatorId = this.operatorId
     operatorBeacon.beaconId = this.beaconId
 
-    this.httpService.post('http://localhost:8080/api/iqueue/operator/beacon', operatorBeacon)
+    this.httpService.post(this.uriBuilderService.getOperatorsBeaconsUri(), operatorBeacon)
       // this.httpService.post('https://localhost:8443/api/iqueue/operator/beacon', operatorBeacon)
       .subscribe(responseData => {
         this.translateService.get('ADD_BEACON_OPERATOR_SUCCESS', {

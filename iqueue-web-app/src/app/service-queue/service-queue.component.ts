@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { ServiceQueueType } from '../model/service-queue-type'
 import { CookieService } from 'ngx-cookie-service'
 import { TranslateService } from '@ngx-translate/core'
+import { UriBuilderService } from '../services/uri-builder-service'
 
 @Component({
   selector: 'app-service-queue',
@@ -20,7 +21,8 @@ export class ServiceQueueComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cookieService: CookieService,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private uriBuilderService: UriBuilderService) { }
 
   readonly DEFAULT_LANGUAGE_ID = '1'
 
@@ -41,8 +43,7 @@ export class ServiceQueueComponent implements OnInit {
 
   getServiceQueue() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
-      // .get(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
+      .get(this.uriBuilderService.getServiceQueueUri(this.serviceQueue.serviceQueueId))
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueDescription = responseData['serviceQueueDescription']
         this.serviceQueue.serviceQueueTypeId = responseData['serviceQueueTypeId']
@@ -52,8 +53,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onCreateServiceQueue() {
     this.httpService
-      .post(`http://localhost:8080/api/iqueue/servicequeue/`, this.serviceQueue)
-      // .post(`https://localhost:8443/api/iqueue/servicequeue/`, this.serviceQueue)
+      .post(this.uriBuilderService.getServiceQueuesUri(), this.serviceQueue)
       .subscribe(responseData => {
         this.serviceQueue.serviceQueueId = responseData['serviceQueueId']
         this.translateService
@@ -72,8 +72,7 @@ export class ServiceQueueComponent implements OnInit {
 
   onUpdateServiceQueue() {
     this.httpService
-      .update(`http://localhost:8080/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`,
-        // .update(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`,
+      .update(this.uriBuilderService.getServiceQueueUri(this.serviceQueue.serviceQueueId),
         this.serviceQueue)
       .subscribe(responseData => {
         this.translateService
@@ -90,8 +89,7 @@ export class ServiceQueueComponent implements OnInit {
   }
 
   onDeleteServiceQueue() {
-    this.httpService.delete(`http://localhost:8080/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
-      // this.httpService.delete(`https://localhost:8443/api/iqueue/servicequeue/${this.serviceQueue.serviceQueueId}`)
+    this.httpService.delete(this.uriBuilderService.getServiceQueueUri(this.serviceQueue.serviceQueueId))
       .subscribe(responseData => {
 
         this.translateService.get('SERVICEQUEUE_DELETE_SUCCESS', { serviceQueueId: this.serviceQueue.serviceQueueId }).subscribe(text =>
@@ -108,8 +106,7 @@ export class ServiceQueueComponent implements OnInit {
 
   getServiceQueueTypes() {
     this.httpService
-      .get(`http://localhost:8080/api/iqueue/servicequeuetype?languageId=${this.languageId}`)
-      // .get(`https://localhost:8443/api/iqueue/servicequeuetype?languageId=${this.languageId}`)
+      .get(this.uriBuilderService.getServiceQueueTypesUri(this.languageId))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.serviceQueueTypes.push(responseData[entry])
