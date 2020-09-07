@@ -41,7 +41,7 @@ export class BeaconComponent implements OnInit {
   onCreateBeacon() {
     this.httpService.post(this.uriBuilderService.getBeaconsUri(), this.beacon).subscribe(responseData => {
       this.beacon.beaconId = responseData['beaconId']
-      this.translateService.get('BEACON_CREATE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
+      this.translateService.get('BEACON_CREATE_SUCCESS', { beaconId: this.beacon.beaconId }).subscribe(text =>
         alert(text)
       )
       this.createMode = false
@@ -57,7 +57,7 @@ export class BeaconComponent implements OnInit {
     this.httpService.update(this.uriBuilderService.getBeaconUri(this.beacon.beaconId),
       this.beacon)
       .subscribe(responseData => {
-        this.translateService.get('BEACON_UPDATE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
+        this.translateService.get('BEACON_UPDATE_SUCCESS', { beaconId: this.beacon.beaconId }).subscribe(text =>
           alert(text)
         )
       },
@@ -71,7 +71,7 @@ export class BeaconComponent implements OnInit {
   onDeleteBeacon() {
     this.httpService.delete(this.uriBuilderService.getBeaconUri(this.beacon.beaconId))
       .subscribe(responseData => {
-        this.translateService.get('BEACON_DELETE_SUCCESS', { userId: this.beacon.beaconId }).subscribe(text =>
+        this.translateService.get('BEACON_DELETE_SUCCESS', { beaconId: this.beacon.beaconId }).subscribe(text =>
           alert(text)
         )
         this.router.navigate(['/beacons'])

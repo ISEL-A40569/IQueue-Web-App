@@ -29,7 +29,7 @@ export class OperatorBeaconComponent implements OnInit {
       this.operatorBeacon.beaconId))
     .subscribe(responseData => {
       this.translateService.get('REMOVE_BEACON_OPERATOR_SUCCESS', {
-        userId: this.operatorBeacon.beaconId,
+        beaconId: this.operatorBeacon.beaconId,
         operatorId: this.operatorBeacon.operatorId
       }).subscribe(text =>
         alert(text)
@@ -38,7 +38,7 @@ export class OperatorBeaconComponent implements OnInit {
       },
         error => {
           this.translateService.get('REMOVE_BEACON_OPERATOR_ERROR', {
-            userId: this.operatorBeacon.beaconId,
+            beaconId: this.operatorBeacon.beaconId,
             operatorId: this.operatorBeacon.operatorId
           }).subscribe(text =>
             alert(text)

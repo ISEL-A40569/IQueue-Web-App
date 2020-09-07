@@ -44,8 +44,7 @@ export class OperatorBeaconsComponent implements OnInit {
 
   getBeacons() {
     this.fetching = true
-    this.httpService.get(this.uriBuilderService.getOperatorsBeaconsUri())
-      // this.httpService.get('https://localhost:8443/api/iqueue/beacon')
+    this.httpService.get(this.uriBuilderService.getBeaconsUri())
       .subscribe(responseData => {
         for (const entry in responseData) {
           const beacon: Beacon = responseData[entry]
@@ -61,10 +60,9 @@ export class OperatorBeaconsComponent implements OnInit {
     operatorBeacon.beaconId = this.beaconId
 
     this.httpService.post(this.uriBuilderService.getOperatorsBeaconsUri(), operatorBeacon)
-      // this.httpService.post('https://localhost:8443/api/iqueue/operator/beacon', operatorBeacon)
       .subscribe(responseData => {
         this.translateService.get('ADD_BEACON_OPERATOR_SUCCESS', {
-          userId: this.beaconId,
+          beaconId: this.beaconId,
           operatorId: this.operatorId
         }).subscribe(text =>
           alert(text)
