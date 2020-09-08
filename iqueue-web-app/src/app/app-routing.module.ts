@@ -22,8 +22,10 @@ import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component'
 import { ServiceDeskComponent } from './service-desk/service-desk.component'
 import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component'
 import { LanguageComponent } from './language/language.component'
+import { HomeComponent } from './home/home.component'
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'servicedesk', component: ServiceDeskComponent },
   { path: 'desk/:deskId/user', component: DeskUsersComponent },
   { path: 'desk/:deskId/user/:userId', component: DeskUserComponent },

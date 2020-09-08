@@ -45,6 +45,7 @@ export class OperatorComponent implements OnInit {
           alert(text)
         )
         this.createMode = false
+        this.router.navigate([`/operator/${this.operator.operatorId}`])
       },
         error => {
           this.translateService.get('OPERATOR_CREATE_ERROR').subscribe(text =>

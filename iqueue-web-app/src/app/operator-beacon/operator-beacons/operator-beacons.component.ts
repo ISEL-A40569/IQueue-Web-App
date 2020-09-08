@@ -71,7 +71,7 @@ export class OperatorBeaconsComponent implements OnInit {
       },
         error => {
           this.translateService.get('ADD_BEACON_OPERATOR_ERROR', {
-            userId: this.beaconId,
+            beaconId: this.beaconId,
             operatorId: this.operatorId
           }).subscribe(text =>
             alert(text)

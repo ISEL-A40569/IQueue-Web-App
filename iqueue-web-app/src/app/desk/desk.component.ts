@@ -48,6 +48,7 @@ export class DeskComponent implements OnInit {
           alert(text)
         )
         this.createMode = false
+        this.router.navigate([`/desk/${this.desk.deskId}`])
       },
         error => {
           this.translateService.get('DESK_CREATE_ERROR').subscribe(text =>

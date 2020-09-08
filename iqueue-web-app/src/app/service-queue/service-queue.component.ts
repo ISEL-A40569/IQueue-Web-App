@@ -62,6 +62,7 @@ export class ServiceQueueComponent implements OnInit {
             alert(text)
           )
         this.createMode = false
+        this.router.navigate([`/servicequeue/${this.serviceQueue.serviceQueueId}`])
       },
         error => {
           this.translateService.get('SERVICEQUEUE_CREATE_ERROR').subscribe(text =>

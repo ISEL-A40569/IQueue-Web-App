@@ -66,6 +66,7 @@ export class AppComponent {
         )
 
         this.loggedIn = true
+        this.router.navigate(['/home'])
 
       }, error => {
         console.log(error)
