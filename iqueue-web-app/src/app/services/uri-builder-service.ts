@@ -115,8 +115,8 @@ export class UriBuilderService {
         return this.buildUri(`operator/${operatorId}`)
     }
 
-    public getLogUri(): string {
-        return this.buildUri('log')
+    public getLogUri(formatedDate: string): string {
+        return this.buildUri(`log?date=${formatedDate.toString()}`)
     }
 
     public getLanguageUri(): string {

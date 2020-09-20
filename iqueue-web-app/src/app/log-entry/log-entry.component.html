@@ -1,4 +1,14 @@
 <div class="row">
+    <div class="col-md-8">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [startAt]="date" #picker></mat-datepicker>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary" (click)="onDateChanged()">{{'SEARCH' | translate}}</button>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <p *ngIf="fetching">{{'LOADING' | translate}}</p>
@@ -29,4 +39,3 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-

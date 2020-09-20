@@ -34,7 +34,10 @@ import { HttpClient } from '@angular/common/http';
 import { LanguageComponent } from './language/language.component'
 
 import { UriBuilderService } from './services/uri-builder-service';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -78,7 +81,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    NoopAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [HttpService,
     UriBuilderService],
