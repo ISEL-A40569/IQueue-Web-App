@@ -23,6 +23,10 @@ export class UriBuilderService {
         return this.buildUri(`operator/${operatorId}/user`)
     }
 
+    public getOperatorUsersWithUserProfileUri(operatorId: number, userprofileId: number): string {
+        return this.buildUri(`operator/${operatorId}/user?userProfileId=${userprofileId}`)
+    }
+
     public getUserOperatorsUri(userId: string): string {
         return this.buildUri(`operator/user/${userId}`)       
     }

@@ -6,6 +6,7 @@ import { UserProfile } from '../model/user-profile'
 import { CookieService } from 'ngx-cookie-service'
 import { TranslateService } from '@ngx-translate/core'
 import { UriBuilderService } from '../services/uri-builder-service'
+import { OperatorUser } from '../model/operator-user'
 
 @Component({
   selector: 'app-user',
@@ -20,6 +21,7 @@ export class UserComponent implements OnInit {
 
   readonly DEFAULT_LANGUAGE_ID = '1'
 
+  readonly ADMINISTRATOR_USER_PROFILE_ID = 1
   readonly MANAGER_USER_PROFILE_ID = 2
   readonly SERVICE_USER_PROFILE_ID = 3
 
@@ -54,7 +56,6 @@ export class UserComponent implements OnInit {
         this.user.userProfileId = responseData['userProfileId']
         this.createMode = false
       })
-      // TODO: on getting user from manager, should exclude users from other operators and admins and clients
   }
 
   onCreateUser() {
@@ -62,6 +63,12 @@ export class UserComponent implements OnInit {
       .post(this.uriBuilderService.getUsersUri(), this.user)
       .subscribe(responseData => {
         this.user.userId = responseData['userId']
+
+        // If it's a Manager Creating a Service User, associate it to the Operator
+        if (this.currentUserProfileId == this.MANAGER_USER_PROFILE_ID &&
+          this.user.userProfileId == this.SERVICE_USER_PROFILE_ID) {
+            this.addUserToOperator(this.user.userId)
+          }
 
         this.translateService.get('USER_CREATE_SUCCESS', { userId: this.user.userId }).subscribe(text =>
           alert(text)
@@ -115,11 +122,29 @@ export class UserComponent implements OnInit {
           this.userProfiles.push(responseData[entry])
         }
 
-        if (parseInt(localStorage.getItem('userProfileId')) == this.MANAGER_USER_PROFILE_ID) {
+        if (this.currentUserProfileId == this.ADMINISTRATOR_USER_PROFILE_ID) {
+          this.userProfiles = this.userProfiles
+          .filter(userProfile => userProfile.userProfileId != this.SERVICE_USER_PROFILE_ID)
+        }
+
+        if (this.currentUserProfileId == this.MANAGER_USER_PROFILE_ID) {
           this.userProfiles = this.userProfiles
             .filter(userProfile => userProfile.userProfileId == this.SERVICE_USER_PROFILE_ID)
         }
       })
+  }
+
+  addUserToOperator(userId: number) {
+    let operatorUser: OperatorUser = new OperatorUser()
+    let operatorId = localStorage.getItem('operatorId')
+    operatorUser.operatorId = parseInt(operatorId)
+    operatorUser.userId = userId
+
+    this.httpService.post(this.uriBuilderService.getOperatorsUsersUri(), operatorUser)
+      .subscribe(responseData => {
+      },
+        error => {
+        })
   }
 
 }

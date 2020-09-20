@@ -18,7 +18,12 @@ export class UsersComponent implements OnInit {
     private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
-    this.getUsers()
+    var userProfileId = localStorage.getItem('userProfileId')
+    if (userProfileId == this.MANAGER_USER_PROFILE_ID.toString()) {
+      this.getOperatorUsers()
+    } else {
+      this.getUsers()
+    }    
   }
 
   getUsers() {
@@ -28,7 +33,21 @@ export class UsersComponent implements OnInit {
         for (const entry in responseData) {
           this.users.push(responseData[entry])
         }
+        this.fetching = false
+      }, error => {
+        this.fetching = false
+      })
+  }
 
+  getOperatorUsers() {
+    this.fetching = true
+    var operatorId = localStorage.getItem('operatorId')
+    this.httpService.get(this.uriBuilderService
+      .getOperatorUsersWithUserProfileUri(parseInt(operatorId), this.SERVICE_USER_PROFILE_ID))
+      .subscribe(responseData => {
+        for (const entry in responseData) {
+          this.users.push(responseData[entry])
+        }
         this.fetching = false
       }, error => {
         this.fetching = false

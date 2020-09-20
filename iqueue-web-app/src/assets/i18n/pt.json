@@ -1,5 +1,5 @@
 {
-    "WELCOME": "Bem vindo à IQueue",
+    "WELCOME": "Bem-vindo à IQueue",
     "USER_ID": "Id Utilizador",
     "PASSWORD": "Password",
     "LOG_IN": "Entrar",
@@ -79,7 +79,7 @@
     "NO_USERS": "Não existem Utilizadores",
     "LANGUAGE": "Idioma",
     "SET_LANGUAGE": "Definir Idioma",
-    "WELCOME_USER": "Bem vindo {{username}}!",
+    "WELCOME_USER": "Bem-vindo {{username}}!",
     "WRONG_CREDENTIALS": "Credênciais erradas!",
     "USER_DONT_EXIST": "O utilizador não existe!",
     "LOGIN_ERROR": "Erro ao entrar!",

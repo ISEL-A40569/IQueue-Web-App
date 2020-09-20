@@ -62,7 +62,6 @@ export class OperatorUsersComponent implements OnInit {
     operatorUser.userId = this.userId
 
     this.httpService.post(this.uriBuilderService.getOperatorsUsersUri(), operatorUser)
-      // this.httpService.post('https://localhost:8443/api/iqueue/operator/user', operatorUser)
       .subscribe(responseData => {
         this.translateService.get('ADD_USER_OPERATOR_SUCCESS', {
           userId: this.userId,
