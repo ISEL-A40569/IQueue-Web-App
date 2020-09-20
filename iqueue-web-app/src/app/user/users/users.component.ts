@@ -11,6 +11,9 @@ export class UsersComponent implements OnInit {
   users: User[] = []
   fetching: boolean = false
 
+  readonly MANAGER_USER_PROFILE_ID = 2
+  readonly SERVICE_USER_PROFILE_ID = 3
+
   constructor(private httpService: HttpService,
     private uriBuilderService: UriBuilderService) { }
 
@@ -25,6 +28,7 @@ export class UsersComponent implements OnInit {
         for (const entry in responseData) {
           this.users.push(responseData[entry])
         }
+
         this.fetching = false
       }, error => {
         this.fetching = false

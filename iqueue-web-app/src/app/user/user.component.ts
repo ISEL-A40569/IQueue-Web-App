@@ -16,8 +16,12 @@ export class UserComponent implements OnInit {
   createMode: boolean = true
   userProfiles: UserProfile[] = []
   languageId: string
+  currentUserProfileId: number
 
   readonly DEFAULT_LANGUAGE_ID = '1'
+
+  readonly MANAGER_USER_PROFILE_ID = 2
+  readonly SERVICE_USER_PROFILE_ID = 3
 
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
@@ -27,8 +31,8 @@ export class UserComponent implements OnInit {
     private uriBuilderService: UriBuilderService) { }
 
   ngOnInit(): void {
-    if (this.route.snapshot.params['userId']) {
-      this.createMode = false
+    this.currentUserProfileId = parseInt(localStorage.getItem('userProfileId'))
+    if (this.route.snapshot.params['userId']) {      
       this.user.userId = this.route.snapshot.params['userId']
       this.getUser()
     }
@@ -48,7 +52,9 @@ export class UserComponent implements OnInit {
         this.user.telephoneNumber = responseData['telephoneNumber']
         this.user.address = responseData['address']
         this.user.userProfileId = responseData['userProfileId']
+        this.createMode = false
       })
+      // TODO: on getting user from manager, should exclude users from other operators and admins and clients
   }
 
   onCreateUser() {
@@ -57,7 +63,7 @@ export class UserComponent implements OnInit {
       .subscribe(responseData => {
         this.user.userId = responseData['userId']
 
-        this.translateService.get('USER_CREATE_SUCCESS', {userId : this.user.userId}).subscribe(text =>
+        this.translateService.get('USER_CREATE_SUCCESS', { userId: this.user.userId }).subscribe(text =>
           alert(text)
         )
 
@@ -75,7 +81,7 @@ export class UserComponent implements OnInit {
       .update(this.uriBuilderService.getUserUri(this.user.userId.toString()),
         this.user)
       .subscribe(responseData => {
-        this.translateService.get('USER_UPDATE_SUCCESS', {userId : this.user.userId}).subscribe(text =>
+        this.translateService.get('USER_UPDATE_SUCCESS', { userId: this.user.userId }).subscribe(text =>
           alert(text)
         )
       },
@@ -89,7 +95,7 @@ export class UserComponent implements OnInit {
   onDeleteUser() {
     this.httpService.delete(this.uriBuilderService.getUserUri(this.user.userId.toString()))
       .subscribe(responseData => {
-        this.translateService.get('USER_DELETE_SUCCESS', {userId : this.user.userId}).subscribe(text =>
+        this.translateService.get('USER_DELETE_SUCCESS', { userId: this.user.userId }).subscribe(text =>
           alert(text)
         )
         this.router.navigate([`/users`])
@@ -107,6 +113,11 @@ export class UserComponent implements OnInit {
       .subscribe(responseData => {
         for (let entry in responseData) {
           this.userProfiles.push(responseData[entry])
+        }
+
+        if (parseInt(localStorage.getItem('userProfileId')) == this.MANAGER_USER_PROFILE_ID) {
+          this.userProfiles = this.userProfiles
+            .filter(userProfile => userProfile.userProfileId == this.SERVICE_USER_PROFILE_ID)
         }
       })
   }

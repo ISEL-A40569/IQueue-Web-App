@@ -1,3 +1,13 @@
+<div class="row" *ngIf="currentUserProfileId == MANAGER_USER_PROFILE_ID">
+  <div class="col-sm-12">
+    <div class="form-group">
+      <label for="userId">{{'USER_ID' | translate}}</label>
+      <input type="number" id="userId" class="form-control" [(ngModel)]="user.userId">
+      <button class="btn btn-primary" (click)="getUser()">{{'SEARCH' | translate}}</button>
+    </div>
+  </div>
+</div>
+
 <div class="row" *ngIf="!createMode">
   <div class="col-sm-12">
     <h5>{{'USER' | translate}} {{user.userId}}</h5>

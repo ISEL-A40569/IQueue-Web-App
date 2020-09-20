@@ -61,9 +61,11 @@ export class AppComponent {
             })
         }
 
-        this.translateService.get('WELCOME_USER').subscribe(text =>
-          alert(`${text} ${response['userName']}`)
-        )
+        this.translateService
+          .get('WELCOME_USER', { username: response['userName'] })
+          .subscribe(text =>
+            alert(text)
+          )
 
         this.loggedIn = true
         this.router.navigate(['/home'])
@@ -96,7 +98,6 @@ export class AppComponent {
   onLogout() {
     localStorage.clear()
     this.loggedIn = false
-    // this.router.navigate(['/'])
   }
 
   getLanguage() {

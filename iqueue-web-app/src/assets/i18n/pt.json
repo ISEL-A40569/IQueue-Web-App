@@ -79,7 +79,7 @@
     "NO_USERS": "Não existem Utilizadores",
     "LANGUAGE": "Idioma",
     "SET_LANGUAGE": "Definir Idioma",
-    "WELCOME_USER": "Bem vindo",
+    "WELCOME_USER": "Bem vindo {{username}}!",
     "WRONG_CREDENTIALS": "Credênciais erradas!",
     "USER_DONT_EXIST": "O utilizador não existe!",
     "LOGIN_ERROR": "Erro ao entrar!",
@@ -126,5 +126,6 @@
     "ADD_USER_DESK_SUCCESS": "Utilizador {{userId}} adicionado com sucesso ao balcão {{deskId}}!",
     "ADD_USER_DESK_ERROR": "Erro ao adicionar utilizador {{userId}} ao balcão {{deskId}}!",
     "REMOVE_USER_DESK_SUCCESS": "Utilizador {{userId}} removido com sucesso do balcão {{deskId}}!",
-    "REMOVE_USER_DESK_ERROR": "Erro ao remover utilizador {{userId}} do balcão {{deskId}}!"
+    "REMOVE_USER_DESK_ERROR": "Erro ao remover utilizador {{userId}} do balcão {{deskId}}!",
+    "SEARCH": "Pesquisar"
 }

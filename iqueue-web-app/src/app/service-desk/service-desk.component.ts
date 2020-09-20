@@ -24,13 +24,14 @@ export class ServiceDeskComponent implements OnInit {
     private datePipe: DatePipe,
     private uriBuilderService: UriBuilderService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.getWaitingCount()
   }
 
   getWaitingCount() {
     this.deskId = localStorage.getItem('deskId')
-    this.httpService.get(this.uriBuilderService.getServiceQueueWaitingCountUri(this.deskId))
+    this.httpService
+      .get(this.uriBuilderService.getServiceQueueWaitingCountUri(this.deskId))
       .subscribe(responseData => {
         this.waitingCount = responseData['waitingCount']
         this.getWaitingCount()
@@ -38,7 +39,8 @@ export class ServiceDeskComponent implements OnInit {
   }
 
   onCallNext() {
-    this.httpService.get(this.uriBuilderService.getNextAttendanceUri(this.deskId))
+    this.httpService
+      .get(this.uriBuilderService.getNextAttendanceUri(this.deskId))
       .subscribe(responseData => {
         this.attendance.attendanceId = responseData['attendanceId']
         this.attendance.serviceQueueId = responseData['serviceQueueId']
@@ -51,20 +53,22 @@ export class ServiceDeskComponent implements OnInit {
 
         this.updateAttendance()
         this.getWaitingCount()
-        this.getAttendanceTicket()        
+        this.getAttendanceTicket()
       })
   }
 
-  updateAttendance() {    
-    this.httpService.update(this.uriBuilderService.getAttendanceUri(this.attendance.attendanceId),
-      this.attendance)
+  updateAttendance() {
+    this.httpService
+      .update(this.uriBuilderService.getAttendanceUri(this.attendance.attendanceId),
+        this.attendance)
       .subscribe(responseData => {
         console.log(this.attendance)
       })
   }
 
   getAttendanceTicket() {
-    this.httpService.get(this.uriBuilderService.getAttendanceTicketUri(this.attendance.attendanceId))
+    this.httpService
+      .get(this.uriBuilderService.getAttendanceTicketUri(this.attendance.attendanceId))
       .subscribe(responseData => {
         this.attendanceTicket.attendanceId = responseData['attendanceId']
         this.attendanceTicket.ticketNumber = responseData['ticketNumber']

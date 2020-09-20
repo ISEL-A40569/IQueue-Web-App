@@ -79,7 +79,7 @@
     "NO_USERS": "There are no users",
     "LANGUAGE": "Language",
     "SET_LANGUAGE": "Set Language",
-    "WELCOME_USER": "Welcome",
+    "WELCOME_USER": "Welcome {{username}}!",
     "WRONG_CREDENTIALS": "Wrong Credentials!",
     "USER_DONT_EXIST": "User does not exist!",
     "LOGIN_ERROR": "Error logging in!",
@@ -126,5 +126,6 @@
     "ADD_USER_DESK_SUCCESS": "User {{userId}} successfully added to desk {{deskId}}!",
     "ADD_USER_DESK_ERROR": "Error adding user {{userId}} to desk {{deskId}}!",
     "REMOVE_USER_DESK_SUCCESS": "User {{userId}} successfully removed from desk {{deskId}}!",
-    "REMOVE_USER_DESK_ERROR": "Error removing user {{userId}} from desk {{deskId}}!"
+    "REMOVE_USER_DESK_ERROR": "Error removing user {{userId}} from desk {{deskId}}!",
+    "SEARCH": "Search"
 }
