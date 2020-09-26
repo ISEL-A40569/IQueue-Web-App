@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   onLogin() {
-    if (!this.userId && !this.password) {
+    if (!this.userId || !this.password) {
       this.translateService.get('EMPTY_CREDENTIALS').subscribe(text =>
         alert(text)
       )
