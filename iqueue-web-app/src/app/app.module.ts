@@ -22,7 +22,7 @@ import { OperatorBeaconsComponent } from './operator-beacon/operator-beacons/ope
 import { OperatorUserComponent } from './operator-user/operator-user.component';
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { LogEntryComponent } from './log-entry/log-entry.component';
+import { LogComponent } from './log/log.component';
 import { ServiceDeskComponent } from './service-desk/service-desk.component';
 import { ServiceQueueReportComponent } from './service-queue-report/service-queue-report.component';
 import { DeskUserComponent } from './desk-user/desk-user.component';
@@ -61,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     OperatorUserComponent,
     OperatorUsersComponent,
     ResetPasswordComponent,
-    LogEntryComponent,
+    LogComponent,
     ServiceDeskComponent,
     ServiceQueueReportComponent,
     DeskUserComponent,

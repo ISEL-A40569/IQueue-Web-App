@@ -4,6 +4,5 @@ export class ServiceQueue {
     serviceQueueDescription: string
     serviceQueueTypeId: number
     dailyLimit: number
-
 }
 

@@ -27,13 +27,13 @@ export class OperatorBeaconComponent implements OnInit {
   onRemoveBeacon() {
     this.httpService.delete(this.uriBuilderService.getOperatorBeaconUri(this.operatorBeacon.operatorId,
       this.operatorBeacon.beaconId))
-    .subscribe(responseData => {
-      this.translateService.get('REMOVE_BEACON_OPERATOR_SUCCESS', {
-        beaconId: this.operatorBeacon.beaconId,
-        operatorId: this.operatorBeacon.operatorId
-      }).subscribe(text =>
-        alert(text)
-      )
+      .subscribe(responseData => {
+        this.translateService.get('REMOVE_BEACON_OPERATOR_SUCCESS', {
+          beaconId: this.operatorBeacon.beaconId,
+          operatorId: this.operatorBeacon.operatorId
+        }).subscribe(text =>
+          alert(text)
+        )
         this.router.navigate([`/operator/${this.operatorBeacon.operatorId}/beacon`])
       },
         error => {

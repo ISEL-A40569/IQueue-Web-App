@@ -6,11 +6,11 @@ import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-log-entry',
-  templateUrl: './log-entry.component.html',
+  templateUrl: './log.component.html',
   providers: [DatePipe]
 })
 
-export class LogEntryComponent implements OnInit {
+export class LogComponent implements OnInit {
   fetching: boolean
   logEntries: LogEntry[] = []
   date: Date
@@ -40,6 +40,7 @@ export class LogEntryComponent implements OnInit {
   }
 
   onDateChanged() {
+    this.logEntries = []
     this.getLogEntries()
   }
 

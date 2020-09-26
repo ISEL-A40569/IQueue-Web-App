@@ -24,15 +24,15 @@ export class DeskUserComponent implements OnInit {
   }
 
   onRemoveUser() {
-    this.httpService.delete(this.uriBuilderService.getDeskUserUri(this.deskUser.deskId,
-      this.deskUser.userId))
-    .subscribe(responseData => {
-      this.translateService.get('REMOVE_USER_DESK_SUCCESS', {
-        userId: this.deskUser.userId,
-        deskId: this.deskUser.deskId
-      }).subscribe(text =>
-        alert(text)
-      )
+    this.httpService.delete(this.uriBuilderService
+      .getDeskUserUri(this.deskUser.deskId, this.deskUser.userId))
+      .subscribe(responseData => {
+        this.translateService.get('REMOVE_USER_DESK_SUCCESS', {
+          userId: this.deskUser.userId,
+          deskId: this.deskUser.deskId
+        }).subscribe(text =>
+          alert(text)
+        )
         this.router.navigate([`/desk/${this.deskUser.deskId}/user`])
       },
         error => {
@@ -41,7 +41,7 @@ export class DeskUserComponent implements OnInit {
             deskId: this.deskUser.deskId
           }).subscribe(text =>
             alert(text)
-          )        
+          )
         })
   }
 }

@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-6">
         <a [routerLink]="['user']">{{'USER' | translate}}</a>
-      </div>
+    </div>
 </div>
 
 <div class="row">
@@ -14,11 +14,9 @@
                 <label for="selectServiceQueue">{{'SERVICE_QUEUE' | translate}}</label>
             </div>
             <div class="row">
-                <select name="selectServiceQueue" id="selectServiceQueue"
-                    [(ngModel)]="desk.serviceQueueId">
+                <select name="selectServiceQueue" id="selectServiceQueue" [(ngModel)]="desk.serviceQueueId">
                     <option *ngIf="createMode"></option>
-                    <option *ngFor=" let serviceQueue of serviceQueues"
-                        value="{{serviceQueue.serviceQueueId}}">
+                    <option *ngFor=" let serviceQueue of serviceQueues" value="{{serviceQueue.serviceQueueId}}">
                         {{serviceQueue.serviceQueueDescription}}</option>
                 </select>
             </div>

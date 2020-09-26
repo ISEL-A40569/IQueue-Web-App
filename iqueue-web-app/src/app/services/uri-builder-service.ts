@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UriBuilderService {
     readonly protocol = 'https'
-    readonly host = '192.168.1.245'
+    readonly host = 'localhost'
     readonly port = '8443'
     readonly commonPath = '/api/iqueue/'
 
@@ -19,16 +19,12 @@ export class UriBuilderService {
         return this.buildUri('operator/user')
     }
 
-    public getOperatorUsersUri(operatorId: number): string {
-        return this.buildUri(`operator/${operatorId}/user`)
-    }
-
     public getOperatorUsersWithUserProfileUri(operatorId: number, userprofileId: number): string {
         return this.buildUri(`operator/${operatorId}/user?userProfileId=${userprofileId}`)
     }
 
     public getUserOperatorsUri(userId: string): string {
-        return this.buildUri(`operator/user/${userId}`)       
+        return this.buildUri(`operator/user/${userId}`)
     }
 
     public getOperatorUserUri(operatorId: number, userId: number): string {

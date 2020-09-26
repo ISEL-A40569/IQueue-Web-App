@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserProfileId = parseInt(localStorage.getItem('userProfileId'))
-    if (this.route.snapshot.params['userId']) {      
+    if (this.route.snapshot.params['userId']) {
       this.user.userId = this.route.snapshot.params['userId']
       this.getUser()
     }
@@ -67,8 +67,8 @@ export class UserComponent implements OnInit {
         // If it's a Manager Creating a Service User, associate it to the Operator
         if (this.currentUserProfileId == this.MANAGER_USER_PROFILE_ID &&
           this.user.userProfileId == this.SERVICE_USER_PROFILE_ID) {
-            this.addUserToOperator(this.user.userId)
-          }
+          this.addUserToOperator(this.user.userId)
+        }
 
         this.translateService.get('USER_CREATE_SUCCESS', { userId: this.user.userId }).subscribe(text =>
           alert(text)
@@ -124,7 +124,7 @@ export class UserComponent implements OnInit {
 
         if (this.currentUserProfileId == this.ADMINISTRATOR_USER_PROFILE_ID) {
           this.userProfiles = this.userProfiles
-          .filter(userProfile => userProfile.userProfileId != this.SERVICE_USER_PROFILE_ID)
+            .filter(userProfile => userProfile.userProfileId != this.SERVICE_USER_PROFILE_ID)
         }
 
         if (this.currentUserProfileId == this.MANAGER_USER_PROFILE_ID) {

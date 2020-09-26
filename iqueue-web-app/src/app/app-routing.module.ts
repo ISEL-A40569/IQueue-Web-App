@@ -16,7 +16,7 @@ import { OperatorBeaconsComponent } from './operator-beacon/operator-beacons/ope
 import { OperatorUserComponent } from './operator-user/operator-user.component'
 import { OperatorUsersComponent } from './operator-user/operator-users/operator-users.component'
 import { ResetPasswordComponent } from './reset-password/reset-password.component'
-import { LogEntryComponent } from './log-entry/log-entry.component'
+import { LogComponent } from './log/log.component'
 import { DeskUserComponent } from './desk-user/desk-user.component'
 import { DeskUsersComponent } from './desk-user/desk-users/desk-users.component'
 import { ServiceDeskComponent } from './service-desk/service-desk.component'
@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'beacon', component: BeaconComponent },
   { path: 'beacons', component: BeaconsComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-  { path: 'log', component: LogEntryComponent },
+  { path: 'log', component: LogComponent },
   { path: 'language', component: LanguageComponent }
 ]
 

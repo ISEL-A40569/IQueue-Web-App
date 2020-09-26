@@ -32,7 +32,8 @@ export class OperatorUsersComponent implements OnInit {
 
   getOperatorUsers() {
     this.fetching = true
-    this.httpService.get(this.uriBuilderService.getOperatorUsersUri(this.operatorId))
+    this.httpService.get(this.uriBuilderService
+      .getOperatorUsersWithUserProfileUri(this.operatorId, this.MANAGER_PROFILE_ID))
       .subscribe(responseData => {
         for (const entry in responseData) {
           this.operatorUsers.push(responseData[entry])
@@ -49,7 +50,7 @@ export class OperatorUsersComponent implements OnInit {
       .subscribe(responseData => {
         for (const entry in responseData) {
           const user: User = responseData[entry]
-          if (user.userProfileId == this.MANAGER_PROFILE_ID && 
+          if (user.userProfileId == this.MANAGER_PROFILE_ID &&
             !this.operatorUsers.some(operatorUser => operatorUser.userId == user.userId))
             this.users.push(user)
         }

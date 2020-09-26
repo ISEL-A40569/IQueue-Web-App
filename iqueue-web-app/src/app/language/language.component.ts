@@ -19,29 +19,29 @@ export class LanguageComponent implements OnInit {
     private cookieService: CookieService,
     private uriBuilderService: UriBuilderService) { }
 
-    readonly DEFAULT_LANGUAGE_ID = 1
+  readonly DEFAULT_LANGUAGE_ID = 1
 
   ngOnInit(): void {
     this.getLanguages()
     this.language.languageId = parseInt(this.cookieService.get('languageId'))
-    if(!this.language.languageId)
+    if (!this.language.languageId)
       this.language.languageId = this.DEFAULT_LANGUAGE_ID
   }
 
   getLanguages() {
     this.httpService
-    .get(this.uriBuilderService.getLanguageUri())
-    .subscribe(response => {              
-      for (const entry in response) {
-        this.languages.push(response[entry])
-      }
-      console.log(this.languages)
-    })
+      .get(this.uriBuilderService.getLanguageUri())
+      .subscribe(response => {
+        for (const entry in response) {
+          this.languages.push(response[entry])
+        }
+        console.log(this.languages)
+      })
   }
 
-  onSetLanguage() {    
+  onSetLanguage() {
     console.log(this.language.languageId)
-    this.language.languageDescription = this.languages[this.language.languageId -1].languageDescription //TODO: can't do this in a nicer way!???
+    this.language.languageDescription = this.languages[this.language.languageId - 1].languageDescription //TODO: can't do this in a nicer way!???
     console.log(this.language.languageDescription)
     this.setLanguage(this.language.languageDescription)
     this.cookieService.set('languageDescription', this.language.languageDescription)
@@ -49,6 +49,6 @@ export class LanguageComponent implements OnInit {
   }
 
   setLanguage(language: string) {
-    this.translateService.use(language)    
+    this.translateService.use(language)
   }
 }

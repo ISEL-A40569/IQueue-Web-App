@@ -1,4 +1,4 @@
-export class UserProfile{
+export class UserProfile {
     userProfileId: number
     userProfileDescription: string
 }

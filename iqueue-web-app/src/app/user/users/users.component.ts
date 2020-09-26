@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
       this.getOperatorUsers()
     } else {
       this.getUsers()
-    }    
+    }
   }
 
   getUsers() {

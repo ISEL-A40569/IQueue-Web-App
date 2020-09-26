@@ -5,6 +5,5 @@ export class Beacon {
     instanceId: string
     manufacturer: string
     model: string
-
 }
 

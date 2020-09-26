@@ -1,7 +1,7 @@
 export class ServiceQueueStatistics {
-attendanceCount: number
-averageWaitingTime: string
-averageAttendanceTime: string
-averageRate: number
-quitCount: number
+    attendanceCount: number
+    averageWaitingTime: string
+    averageAttendanceTime: string
+    averageRate: number
+    quitCount: number
 }

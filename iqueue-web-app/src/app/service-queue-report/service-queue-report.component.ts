@@ -13,7 +13,7 @@ export class ServiceQueueReportComponent implements OnInit {
   serviceQueueId: number
   serviceQueueStatistics: ServiceQueueStatistics = new ServiceQueueStatistics()
   attendanceClassifications: AttendanceClassification[] = []
-  
+
   constructor(private httpService: HttpService,
     private route: ActivatedRoute,
     private uriBuilderService: UriBuilderService) { }
