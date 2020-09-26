@@ -81,6 +81,7 @@
     "SET_LANGUAGE": "Definir Idioma",
     "WELCOME_USER": "Bem-vindo {{username}}!",
     "WRONG_CREDENTIALS": "Credênciais erradas!",
+    "EMPTY_CREDENTIALS": "Por favor insira um Id de utilizador e password!",
     "USER_DONT_EXIST": "O utilizador não existe!",
     "LOGIN_ERROR": "Erro ao entrar!",
     "USER_CREATE_SUCCESS": "Utilizador criado com sucesso com id {{userId}}!",
